@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPValue+ | Operating Partners – Des dirigeants au service des dirigeants</title>
+<meta name="description" content="OPValue+ réunit des dirigeants expérimentés qui interviennent comme Operating Partners pour aider les entreprises à décider, transformer et exécuter.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Operating Partners</div>
+    <h1>Des dirigeants au service <br>des <em>dirigeants</em></h1>
+    <p class="hero-sub">Décider vite. Exécuter juste. Tenir le cap avec vous. Nous sommes des Operating Partners — des pairs qui s'engagent à vos côtés dans les moments décisifs.</p>
+    <div class="hero-actions">
+      <a href="contact.html" class="btn-primary">Échangeons →</a>
+      <a href="offre.html" class="btn-secondary">Découvrir notre offre</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><h3>+100M€</h3><p>de valeur générée</p></div>
+      <div class="hero-stat"><h3>25+</h3><p>missions réalisées</p></div>
+      <div class="hero-stat"><h3>7</h3><p>Operating Partners</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ENJEUX -->
+<section class="enjeux" id="enjeux">
+  <div class="enjeux-inner">
+    <div class="enjeux-image reveal">
+      <img src="" alt="Complexité et incertitude" onerror="this.parentElement.style.background='linear-gradient(135deg,var(--navy),var(--navy-light))';this.style.display='none'">
+    </div>
+    <div>
+      <div class="section-label reveal">Vos enjeux actuels</div>
+      <h2 class="section-title reveal">Complexité. Incertitude.<br><em>Isolement.</em></h2>
+      <div class="enjeux-list">
+        <div class="enjeu-item reveal reveal-delay-1">
+          <div class="enjeu-icon">🎯</div>
+          <div><h5>Dirigeants</h5><p>Comment franchir un cap stratégique, retrouver de la maîtrise en phase de tension, et avancer avec lucidité sans s'épuiser ?</p></div>
+        </div>
+        <div class="enjeu-item reveal reveal-delay-2">
+          <div class="enjeu-icon">📊</div>
+          <div><h5>Investisseurs</h5><p>Comment sécuriser un investissement, gagner 12 à 24 mois sur l'exécution et renforcer la capacité du management ?</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMESSE -->
+<section class="promise" id="promesse">
+  <div class="promise-inner">
+    <div class="section-label reveal">Ce que nous apportons</div>
+    <h2 class="section-title reveal">La clarté pour décider,<br>la rigueur pour <em>exécuter</em></h2>
+    <div class="promise-grid" id="prom-grid"></div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="quote-bg"></div>
+  <div class="quote-overlay"></div>
+  <div class="quote-content reveal">
+    <blockquote>Une relation de pair à pair, dans les moments importants.<br>Nous avons déjà <em>tenu la barre</em>.</blockquote>
+    <cite>— L'Operating Partner : stratège opérationnel, vision 360°, partenaire engagé financièrement sur les résultats</cite>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <div class="cta-item reveal reveal-delay-1"><a href="offre.html">Découvrez notre offre <span class="arrow">→</span></a></div>
+    <div class="cta-divider"></div>
+    <div class="cta-item reveal reveal-delay-2"><a href="references.html">Voir nos cas d'usage <span class="arrow">→</span></a></div>
+    <div class="cta-divider"></div>
+    <div class="cta-item reveal reveal-delay-3"><a href="equipe.html">Rencontrez l'équipe <span class="arrow">→</span></a></div>
+  </div>
+</section>
+
+<script src="js/site-content.js"></script>
+<script src="js/site-images.js"></script>
+<script src="js/tous-les-membres.js"></script>
+<script src="js/membres/fp.js"></script>
+<script src="js/membres/fg.js"></script>
+<script src="js/membres/nb.js"></script>
+<script src="js/membres/bdp.js"></script>
+<script src="js/membres/ol.js"></script>
+<script src="js/membres/cq.js"></script>
+<script src="js/membres/bh.js"></script>
+<script src="js/components.js"></script>
+<script>
+const C = SITE_CONTENT;
+// Promise cards
+document.getElementById('prom-grid').innerHTML = C.promesse.items.map((p,i) =>
+  `<div class="promise-card reveal reveal-delay-${(i%4)+1}">
+     <div class="promise-icon">${p.icon}</div>
+     <h4>${p.titre}</h4>
+     <p>${p.texte}</p>
+   </div>`).join('');
+COMPONENTS.init('accueil');
+</script>
+</body>
+</html>

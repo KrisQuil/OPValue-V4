@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notre offre | OPValue+ – Operating Partners</title>
+<meta name="description" content="La solution OPValue+ combine une approche stratégique et opérationnelle en trois phases : SCAN, BUILD et BOOST.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Accueil</a> <span>›</span> <span>Notre offre</span>
+    </div>
+    <h1>Une solution qui relie stratégie, exécution et <em>engagement</em></h1>
+  </div>
+</section>
+
+<!-- SOLUTION PHASES -->
+<section class="solution" id="solution">
+  <div class="solution-inner">
+    <div class="section-label reveal">Notre approche</div>
+    <h2 class="section-title reveal">Trois phases pour <em>transformer</em></h2>
+    <div class="solution-cards" id="solution-cards"></div>
+  </div>
+</section>
+
+<!-- SITUATIONS -->
+<section class="situations" id="situations">
+  <div class="situations-inner">
+    <div class="section-label reveal">Nos domaines</div>
+    <h2 class="section-title reveal">Les situations que nous <em>adressons</em></h2>
+    <div class="sit-grid" id="situations-grid"></div>
+  </div>
+</section>
+
+<!-- DEMARRAGE -->
+<section class="demarrage" id="demarrage">
+  <div class="demarrage-inner">
+    <div class="section-label reveal">Comment démarrer ?</div>
+    <h2 class="section-title reveal">Une conversation peut suffire à <em>débloquer</em> une situation complexe</h2>
+    <div class="demarrage-grid" id="demarrage-grid"></div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <div class="cta-item reveal reveal-delay-1"><a href="references.html">Voir nos cas d'usage <span class="arrow">→</span></a></div>
+    <div class="cta-divider"></div>
+    <div class="cta-item reveal reveal-delay-2"><a href="contact.html">Parlons de vos enjeux <span class="arrow">→</span></a></div>
+  </div>
+</section>
+
+<script src="js/site-content.js"></script>
+<script src="js/site-images.js"></script>
+<script src="js/tous-les-membres.js"></script>
+<script src="js/membres/fp.js"></script>
+<script src="js/membres/fg.js"></script>
+<script src="js/membres/nb.js"></script>
+<script src="js/membres/bdp.js"></script>
+<script src="js/membres/ol.js"></script>
+<script src="js/membres/cq.js"></script>
+<script src="js/membres/bh.js"></script>
+<script src="js/components.js"></script>
+<script>
+const C = SITE_CONTENT;
+
+// Solution cards from SITE_CONTENT
+if (C.solution) {
+  const durees = ['15 jours', '3 à 9 mois', 'Accompagnement continu'];
+  const cards = C.solution.phases.map((phase, i) => {
+    const items = phase.items.map(item => `<li>${item}</li>`).join('');
+    return `<div class="sol-card${i===1?' featured':''} reveal reveal-delay-${i+1}">
+      <div class="sol-tag">Phase ${i+1}</div>
+      <h4>${phase.code}</h4>
+      <p class="sol-desc">${phase.titre}</p>
+      <ul>${items}</ul>
+      <div class="sol-duration">⏱ ${durees[i]}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('solution-cards').innerHTML = cards;
+}
+
+// Situations from SITE_CONTENT
+if (C.situations) {
+  const descriptions = {
+    "Gouvernance & Actionnariat": "Aligner les intérêts, structurer la gouvernance",
+    "Stratégie & Modèle économique": "Clarifier la vision, pivoter le modèle",
+    "Croissance & Scalabilité": "Passer à l'échelle, structurer les opérations",
+    "International & Partenariat": "Développement international, alliances stratégiques",
+    "Innovation & Digitalisation": "IA, transformation digitale",
+    "Résilience & Retournement": "Gestion de crise, restructuration",
+    "Leadership & Organisation": "Renforcer le management, mobiliser les équipes",
+    "Finance & Pilotage": "Levées de fonds, M&A",
+    "Transmission & Cession": "Préparation à la cession, valorisation",
+  };
+  document.getElementById('situations-grid').innerHTML = C.situations.items.map((item, i) =>
+    `<div class="sit-item reveal reveal-delay-${(i%4)+1}">
+       <h5>${item}</h5>
+       <p>${descriptions[item] || ''}</p>
+     </div>`
+  ).join('');
+}
+
+// Demarrage from SITE_CONTENT
+if (C.demarrage) {
+  let html = '';
+  // Day Click card
+  if (C.demarrage.offre_day_click) {
+    const items = C.demarrage.offre_day_click.items.map(i => `<li>${i}</li>`).join('');
+    html += `<div class="day-card reveal reveal-delay-1">
+      <h4>${C.demarrage.offre_day_click.titre}</h4>
+      <ul>${items}</ul>
+      <a href="contact.html" class="btn-primary">Prendre rendez-vous →</a>
+    </div>`;
+  }
+  // Scan + Accompagnement cards
+  if (C.demarrage.scan) {
+    html += `<div class="offre-card reveal reveal-delay-2">
+      <h4>${C.demarrage.scan.titre}</h4>
+      <p>${C.demarrage.scan.texte}</p>
+    </div>`;
+  }
+  if (C.demarrage.accompagnement) {
+    html += `<div class="offre-card reveal reveal-delay-3">
+      <h4>${C.demarrage.accompagnement.titre}</h4>
+      <p>${C.demarrage.accompagnement.texte}</p>
+    </div>`;
+  }
+  document.getElementById('demarrage-grid').innerHTML = html;
+}
+
+COMPONENTS.init('offre');
+</script>
+</body>
+</html>
