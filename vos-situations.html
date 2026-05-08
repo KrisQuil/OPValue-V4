@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vos situations | OPValue+ – Quand faire appel à un Operating Partner</title>
+<meta name="description" content="EBITDA qui décroche, croissance qui craque, cession à préparer, fonds au capital, business model à pivoter : voici les situations où un Operating Partner OPValue+ change la donne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-inner">
+    <h1>Vous reconnaissez votre <em>situation</em> ?</h1>
+  </div>
+</section>
+
+<!-- INTRO + GRILLE DES SCÉNARIOS -->
+<section class="situations-page">
+  <div class="situations-page-inner">
+    <p class="situations-intro reveal" id="situations-intro"></p>
+    <div class="scenarios-list" id="scenarios-grid"></div>
+  </div>
+</section>
+
+<!-- BRIDGE → Le monde de l'OP -->
+<section class="situations-bridge">
+  <div class="situations-bridge-inner reveal">
+    <p id="situations-bridge-text"></p>
+    <a id="situations-bridge-cta" href="operating-partner.html" class="btn-primary"></a>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <div class="cta-item reveal reveal-delay-1"><a href="offre.html">Découvrez notre approche <span class="arrow">→</span></a></div>
+    <div class="cta-divider"></div>
+    <div class="cta-item reveal reveal-delay-2"><a href="contact.html">Parlons-en <span class="arrow">→</span></a></div>
+  </div>
+</section>
+
+<script src="js/site-content.js"></script>
+<script src="js/site-images.js"></script>
+<script src="js/tous-les-membres.js"></script>
+<script src="js/membres/fp.js"></script>
+<script src="js/membres/ol.js"></script>
+<script src="js/membres/cq.js"></script>
+<script src="js/membres/fg.js"></script>
+<script src="js/membres/bdp.js"></script>
+<script src="js/membres/nb.js"></script>
+<script src="js/membres/bh.js"></script>
+<script src="js/components.js"></script>
+<script>
+const C = SITE_CONTENT;
+
+if (C.situations_scenarios) {
+  const S = C.situations_scenarios;
+
+  // Intro
+  document.getElementById('situations-intro').textContent = S.intro;
+
+  // Regroupement par type, ordre fixe : Transformation > Croissance > M&A
+  const groups = {};
+  S.cartes.forEach(c => {
+    if (!groups[c.type]) groups[c.type] = [];
+    groups[c.type].push(c);
+  });
+  const orderedTypes = ['Transformation', 'Croissance', 'M&A'];
+  let rowCounter = 0;
+  document.getElementById('scenarios-grid').innerHTML = orderedTypes
+    .filter(type => groups[type] && groups[type].length > 0)
+    .map(type => {
+      const rows = groups[type].map(c => {
+        rowCounter++;
+        const themeFilter = encodeURIComponent(c.theme);
+        return `
+          <a href="references.html?type=${themeFilter}" class="scenario-row reveal reveal-delay-${(rowCounter % 4) + 1}" title="Voir les cas en ${c.theme}">
+            <div class="scenario-content">
+              <p class="scenario-signal">« ${c.signal} »</p>
+              <p class="scenario-demande">${c.demande}</p>
+            </div>
+            <div class="scenario-theme">${c.theme}</div>
+            <span class="scenario-arrow">→</span>
+          </a>
+        `;
+      }).join('');
+      return `
+        <div class="scenarios-group">
+          <div class="scenarios-group-label">${type}</div>
+          <div class="scenarios-group-rows">${rows}</div>
+        </div>
+      `;
+    }).join('');
+
+  // Bridge
+  document.getElementById('situations-bridge-text').textContent = S.bridge.texte;
+  const ctaEl = document.getElementById('situations-bridge-cta');
+  ctaEl.textContent = S.bridge.cta_label + ' →';
+  ctaEl.href = S.bridge.cta_href;
+}
+
+COMPONENTS.init('situations');
+</script>
+</body>
+</html>

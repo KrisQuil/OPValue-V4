@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nos missions | OPValue+ – Operating Partners</title>
+<meta name="description" content="Découvrez les missions accomplies par les Operating Partners OPValue+ : +100M€ de valeur générée, 25+ missions, transformations et redressements réussis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-inner">
+    <h1>Références & <em>impacts</em></h1>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results" id="results">
+  <div class="results-inner">
+    <h2 class="section-title reveal">Ce que nous avons <em>accompli</em></h2>
+
+    <div class="results-headline reveal reveal-delay-1">
+      <div class="big-stat">+100M€</div>
+      <p class="big-stat-sub">de valeur générée, captée, ou sécurisée en 25 missions</p>
+    </div>
+
+    <!-- Result categories -->
+    <div class="results-grid" id="results-grid"></div>
+
+    <!-- Case studies -->
+    <div class="cases-header">
+      <h3 class="cases-title reveal">Fiches missions détaillées</h3>
+      <div class="cases-filters" id="cases-filters">
+        <select id="filter-secteur" class="filter-select">
+          <option value="">Tous les secteurs</option>
+        </select>
+        <select id="filter-type" class="filter-select">
+          <option value="">Tous les types</option>
+        </select>
+        <select id="filter-op" class="filter-select">
+          <option value="">Tous les OPs</option>
+        </select>
+        <button id="filter-reset" class="filter-reset">Réinitialiser</button>
+      </div>
+    </div>
+    <p id="cases-count" class="cases-count"></p>
+    <div class="cases-grid" id="cases-grid"></div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <div class="cta-item reveal reveal-delay-1"><a href="equipe.html">Rencontrez l'équipe <span class="arrow">→</span></a></div>
+    <div class="cta-divider"></div>
+    <div class="cta-item reveal reveal-delay-2"><a href="contact.html">Parlons de vos enjeux <span class="arrow">→</span></a></div>
+  </div>
+</section>
+
+<script src="js/site-content.js"></script>
+<script src="js/site-images.js"></script>
+<script src="js/tous-les-membres.js"></script>
+<script src="js/membres/fp.js"></script>
+<script src="js/membres/ol.js"></script>
+<script src="js/membres/cq.js"></script>
+<script src="js/membres/fg.js"></script>
+<script src="js/membres/bdp.js"></script>
+<script src="js/membres/nb.js"></script>
+<script src="js/membres/bh.js"></script>
+<script src="js/components.js"></script>
+<script>
+const C = SITE_CONTENT;
+
+// Result categories
+const resultsGrid = document.getElementById('results-grid');
+if (C.references && C.references.categories) {
+  resultsGrid.innerHTML = C.references.categories.map((cat, i) => {
+    const metrics = cat.items.slice(1).map(item =>
+      `<div class="result-metric"><span>${item}</span></div>`
+    ).join('');
+    return `<div class="result-card reveal reveal-delay-${(i%4)+1}">
+      <div class="result-cat">${cat.titre}</div>
+      <h5>${cat.items[0]}</h5>
+      <div class="result-metrics">${metrics}</div>
+    </div>`;
+  }).join('');
+}
+
+// Case studies from all members
+const casesGrid = document.getElementById('cases-grid');
+const membres = COMPONENTS.getAllMembres();
+
+// Collect all cards data for filtering
+const allCardsData = [];
+if (membres && membres.length > 0) {
+  membres.forEach(membre => {
+    if (membre.missions && Array.isArray(membre.missions)) {
+      membre.missions.forEach(mission => {
+        allCardsData.push({
+          membre,
+          mission,
+          opName: `${membre.prenom} ${membre.nom}`,
+          secteur: mission.secteur || '—',
+          type: mission.type || '—',
+        });
+      });
+    }
+  });
+}
+
+// Build and render all cards
+function renderCards(data) {
+  if (!data.length) {
+    casesGrid.innerHTML = '<p class="cases-empty">Aucune mission ne correspond à ces filtres.</p>';
+    document.getElementById('cases-count').textContent = '';
+    return;
+  }
+  const total = allCardsData.length;
+  const shown = data.length;
+  document.getElementById('cases-count').textContent =
+    shown < total ? `${shown} mission${shown > 1 ? 's' : ''} affichée${shown > 1 ? 's' : ''} sur ${total}` : '';
+
+  // SVG bâtiment générique pour les clients confidentiels
+  const placeholderSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4M9 9h.01M9 13h.01M9 17h.01"/></svg>`;
+
+  casesGrid.innerHTML = data.map(({ membre, mission }) => {
+    const nameHtml  = `${membre.prenom} <span class="nom-fam">${membre.nom}</span>`;
+    const client    = mission.client || 'Confidentiel';
+    const secteur   = mission.secteur || '';
+    const contexte  = mission.contexte || '';
+    const probleme  = mission.problematique_initiale || '';
+    const actions   = mission.actions || mission.detail || '';  // fallback compat
+    const resultat  = mission.resultat || '';
+
+    const logoHtml = mission.client_logo
+      ? `<img src="${mission.client_logo}" alt="Logo ${client}" class="case-client-logo">`
+      : `<div class="case-client-logo case-client-logo-placeholder">${placeholderSvg}</div>`;
+
+    return `<div class="case-card">
+      <div class="case-type-row">
+        <div class="case-type-tag">${mission.type || ''}</div>
+      </div>
+      <div class="case-client-block">
+        ${logoHtml}
+        <div class="case-client-info">
+          <div class="case-client-name">${client}</div>
+          ${contexte ? `<div class="case-client-contexte">${contexte}</div>` : ''}
+          ${secteur ? `<div class="case-client-secteur">${secteur}</div>` : ''}
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="case-section-label">Problématique initiale</div>
+        <div class="case-section-text case-text-clamp">${probleme}</div>
+        <div class="case-section-label">Résultat</div>
+        <div class="case-section-text case-text-clamp">${resultat}</div>
+        <div class="case-expand-only">
+          <div class="case-section-label">Actions menées</div>
+          <div class="case-section-text">${actions}</div>
+          <div class="case-section-label">Operating Partner</div>
+          <div class="case-section-text">${nameHtml}</div>
+        </div>
+      </div>
+      <button class="case-toggle">Voir le détail ▾</button>
+    </div>`;
+  }).join('');
+
+  // Toggle expand
+  document.querySelectorAll('.case-card').forEach(card => {
+    const toggle = card.querySelector('.case-toggle');
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        card.classList.toggle('open');
+        toggle.textContent = card.classList.contains('open') ? 'Masquer le détail ▴' : 'Voir le détail ▾';
+      });
+    }
+  });
+}
+
+// Populate filter options dynamically
+function populateFilters() {
+  const ops      = [...new Set(allCardsData.map(d => d.opName))].sort();
+  const secteurs = [...new Set(allCardsData.map(d => d.secteur))].sort();
+  const types    = [...new Set(allCardsData.map(d => d.type))].sort();
+
+  const selOp  = document.getElementById('filter-op');
+  const selSec = document.getElementById('filter-secteur');
+  const selTyp = document.getElementById('filter-type');
+
+  ops.forEach(v      => { const o = document.createElement('option'); o.value = v; o.textContent = v; selOp.appendChild(o); });
+  secteurs.forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; selSec.appendChild(o); });
+  types.forEach(v    => { const o = document.createElement('option'); o.value = v; o.textContent = v; selTyp.appendChild(o); });
+}
+
+// Apply filters
+function applyFilters() {
+  const op      = document.getElementById('filter-op').value;
+  const secteur = document.getElementById('filter-secteur').value;
+  const type    = document.getElementById('filter-type').value;
+  const filtered = allCardsData.filter(d =>
+    (!op      || d.opName  === op) &&
+    (!secteur || d.secteur === secteur) &&
+    (!type    || d.type    === type)
+  );
+  renderCards(filtered);
+}
+
+// Init
+if (allCardsData.length) {
+  populateFilters();
+
+  // Pré-sélection depuis l'URL (?secteur=Industrie ou ?op=Frédéric+Ploix)
+  const params = new URLSearchParams(window.location.search);
+  const paramSecteur = params.get('secteur');
+  const paramOp      = params.get('op');
+  const paramType    = params.get('type');
+  if (paramSecteur) document.getElementById('filter-secteur').value = paramSecteur;
+  if (paramOp)      document.getElementById('filter-op').value      = paramOp;
+  if (paramType)    document.getElementById('filter-type').value    = paramType;
+
+  // Affichage initial (filtré si paramètre)
+  applyFilters();
+
+  // Si on arrive avec un filtre (depuis L'équipe ou un lien secteur),
+  // on positionne le titre "Fiches missions détaillées" autour de 40 % du haut
+  // pour laisser voir un peu des catégories de résultats au-dessus + les 1ères missions en dessous.
+  if (paramSecteur || paramOp || paramType) {
+    setTimeout(() => {
+      const target = document.querySelector('.cases-title');
+      if (!target) return;
+      const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+      const offsetFromTop = window.innerHeight * 0.40;
+      window.scrollTo({ top: targetTop - offsetFromTop, behavior: 'smooth' });
+    }, 120);
+  }
+
+  document.getElementById('filter-op').addEventListener('change', applyFilters);
+  document.getElementById('filter-secteur').addEventListener('change', applyFilters);
+  document.getElementById('filter-type').addEventListener('change', applyFilters);
+  document.getElementById('filter-reset').addEventListener('click', () => {
+    document.getElementById('filter-op').value = '';
+    document.getElementById('filter-secteur').value = '';
+    document.getElementById('filter-type').value = '';
+    // Nettoyer l'URL
+    window.history.replaceState({}, '', 'references.html');
+    renderCards(allCardsData);
+  });
+}
+
+COMPONENTS.init('references');
+</script>
+</body>
+</html>

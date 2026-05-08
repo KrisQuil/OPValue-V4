@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | OPValue+ – Operating Partners</title>
+<meta name="description" content="Parlons-en. Contactez OPValue+ pour démarrer une conversation avec l'un de nos Operating Partners expérimentés.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-inner">
+    <h1>Une conversation peut suffire à <em>débloquer une situation</em></h1>
+  </div>
+</section>
+
+<!-- CONTACT 2-COLS — OPs (gauche) + Formulaire (droite) -->
+<section class="contact-page">
+  <div class="contact-page-grid">
+
+    <!-- COLONNE GAUCHE — OPs -->
+    <div class="contact-col contact-col-ops">
+      <h2 class="contact-col-title">Contactez directement un <em>Operating Partner</em></h2>
+      <div class="cm-grid" id="cm-grid"></div>
+    </div>
+
+    <!-- COLONNE DROITE — Formulaire -->
+    <div class="contact-col contact-col-form">
+      <h2 class="contact-col-title">Ou laissez-nous un <em>message</em></h2>
+      <form class="contact-form" id="contact-form" novalidate>
+        <div class="contact-form-group">
+          <label class="contact-form-label" for="cf-nom">Nom <span class="req">*</span></label>
+          <input type="text" id="cf-nom" name="nom" required>
+        </div>
+        <div class="contact-form-group">
+          <label class="contact-form-label" for="cf-email">Email <span class="req">*</span></label>
+          <input type="email" id="cf-email" name="email" required>
+        </div>
+        <div class="contact-form-group">
+          <label class="contact-form-label" for="cf-societe">Société</label>
+          <input type="text" id="cf-societe" name="societe">
+        </div>
+        <div class="contact-form-group">
+          <label class="contact-form-label" for="cf-sujet">Sujet de l'échange</label>
+          <select id="cf-sujet" name="sujet">
+            <option value="">Choisir...</option>
+            <option value="Transformation">Transformation / retournement</option>
+            <option value="Croissance">Croissance &amp; création de valeur</option>
+            <option value="M&A">M&amp;A / cession / acquisition</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+        <div class="contact-form-group">
+          <label class="contact-form-label" for="cf-message">Message <span class="req">*</span></label>
+          <textarea id="cf-message" name="message" rows="5" required placeholder="Décrivez en quelques mots votre situation et ce que vous cherchez."></textarea>
+        </div>
+        <button type="submit" class="contact-form-submit">Envoyer →</button>
+        <p class="contact-form-note" id="contact-form-note"></p>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <div class="cta-item reveal reveal-delay-1"><a href="offre.html">Découvrez notre approche <span class="arrow">→</span></a></div>
+    <div class="cta-divider"></div>
+    <div class="cta-item reveal reveal-delay-2"><a href="operating-partner.html">Le monde de l'OP <span class="arrow">→</span></a></div>
+  </div>
+</section>
+
+<script src="js/site-content.js"></script>
+<script src="js/site-images.js"></script>
+<script src="js/tous-les-membres.js"></script>
+<script src="js/membres/fp.js"></script>
+<script src="js/membres/ol.js"></script>
+<script src="js/membres/cq.js"></script>
+<script src="js/membres/fg.js"></script>
+<script src="js/membres/bdp.js"></script>
+<script src="js/membres/nb.js"></script>
+<script src="js/membres/bh.js"></script>
+<script src="js/components.js"></script>
+<script>
+const C = SITE_CONTENT;
+
+// Grille des OPs (colonne gauche)
+const cmGrid = document.getElementById('cm-grid');
+const membres = COMPONENTS.getAllMembres();
+if (membres && membres.length > 0) {
+  cmGrid.innerHTML = membres.map((m, i) =>
+    `<div class="cm-card reveal reveal-delay-${(i%4)+1}">
+       <div class="cm-avatar">
+         <img src="" data-portrait="${m.id}" onerror="this.style.display='none'" alt="${m.prenom} ${m.nom}">
+       </div>
+       <div>
+         <div class="cm-name">${m.prenom} <span class="nom-fam">${m.nom}</span></div>
+         <div class="cm-email"><a href="mailto:${m.email}">${m.email}</a></div>
+         <div class="cm-tel">${m.tel}</div>
+         <a href="${m.linkedin}" class="cm-linkedin" target="_blank" rel="noopener">LinkedIn →</a>
+       </div>
+     </div>`
+  ).join('');
+  COMPONENTS.injectPortraits();
+}
+
+// Formulaire de contact (colonne droite)
+// Pour V1 : ouverture de l'app de messagerie native via mailto:
+// (à remplacer en S3 par Formspree ou équivalent pour soumission backend)
+const form = document.getElementById('contact-form');
+const note = document.getElementById('contact-form-note');
+if (form) {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const nom     = data.get('nom').trim();
+    const email   = data.get('email').trim();
+    const societe = (data.get('societe') || '').trim();
+    const sujet   = (data.get('sujet') || '').trim();
+    const message = data.get('message').trim();
+
+    if (!nom || !email || !message) {
+      note.textContent = "Merci de renseigner les champs obligatoires (Nom, Email, Message).";
+      note.className = 'contact-form-note error';
+      return;
+    }
+
+    const destinataire = (C.contact && C.contact.email_general) || 'contact@opvalueplus.com';
+    const subject = sujet
+      ? `Demande contact : ${sujet} (${nom})`
+      : `Demande contact : ${nom}`;
+    const body = [
+      `Nom : ${nom}`,
+      `Email : ${email}`,
+      societe ? `Société : ${societe}` : null,
+      sujet ? `Sujet : ${sujet}` : null,
+      ``,
+      `Message :`,
+      message,
+    ].filter(Boolean).join('\n');
+
+    window.location.href = `mailto:${destinataire}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    note.textContent = "Votre messagerie va s'ouvrir pour finaliser l'envoi.";
+    note.className = 'contact-form-note success';
+  });
+}
+
+COMPONENTS.init('contact');
+</script>
+</body>
+</html>

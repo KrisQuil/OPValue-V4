@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPValue+ | Operating Partners – Décider, exécuter, tenir le cap</title>
+<meta name="description" content="OPValue+ réunit des dirigeants expérimentés qui interviennent comme Operating Partners pour aider les entreprises à décider, transformer et exécuter.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <h1>Décider vite. Exécuter juste. Tenir le cap <em>avec vous</em>.</h1>
+    <p class="hero-sub">Operating Partners. Des pairs et copilotes à vos côtés dans les phases de croissance, transformation, rebond. Vision 360°, engagés financièrement sur vos résultats, dans la durée.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><h3>+100M€</h3><p>de valeur générée</p></div>
+      <div class="hero-stat"><h3>25+</h3><p>missions réalisées</p></div>
+      <div class="hero-stat"><h3>7</h3><p>Operating Partners</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ENJEUX -->
+<section class="enjeux" id="enjeux">
+  <div class="enjeux-inner-v2">
+    <div class="enjeux-head reveal">
+      <div class="section-label">Vos enjeux actuels</div>
+      <h2 class="section-title">Complexité. Incertitude. <em>Isolement.</em></h2>
+    </div>
+    <div class="enjeux-two" id="enjeux-two"></div>
+    <div class="enjeux-bridge reveal">
+      <a href="vos-situations.html" class="enjeux-bridge-link">Vous vous reconnaissez ? Voir toutes vos situations →</a>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="quote-bg"></div>
+  <div class="quote-overlay"></div>
+  <div class="quote-content reveal">
+    <blockquote>Une relation de pair à pair, dans les moments importants.<br>Nous avons déjà <em>tenu la barre</em>.</blockquote>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <div class="cta-item reveal reveal-delay-1"><a href="offre.html">Découvrez notre offre <span class="arrow">→</span></a></div>
+    <div class="cta-divider"></div>
+    <div class="cta-item reveal reveal-delay-2"><a href="references.html">Voir nos missions <span class="arrow">→</span></a></div>
+    <div class="cta-divider"></div>
+    <div class="cta-item reveal reveal-delay-3"><a href="equipe.html">Rencontrez l'équipe <span class="arrow">→</span></a></div>
+  </div>
+</section>
+
+<script src="js/site-content.js"></script>
+<script src="js/site-images.js"></script>
+<script src="js/tous-les-membres.js"></script>
+<script src="js/membres/fp.js"></script>
+<script src="js/membres/ol.js"></script>
+<script src="js/membres/cq.js"></script>
+<script src="js/membres/fg.js"></script>
+<script src="js/membres/bdp.js"></script>
+<script src="js/membres/nb.js"></script>
+<script src="js/membres/bh.js"></script>
+<script src="js/components.js"></script>
+<script>
+const C = SITE_CONTENT;
+
+// Enjeux : 2 blocs Dirigeants / Investisseurs avec questions détaillées
+if (C.enjeux) {
+  const blocs = [
+    { key: 'dirigeants',    icon: '🎯', titre: 'Dirigeants',    data: C.enjeux.dirigeants },
+    { key: 'investisseurs', icon: '📊', titre: 'Investisseurs', data: C.enjeux.investisseurs },
+  ];
+  document.getElementById('enjeux-two').innerHTML = blocs.map((b, i) =>
+    `<div class="enjeu-col reveal reveal-delay-${i+1}">
+       <div class="enjeu-col-head">
+         <div class="enjeu-icon">${b.icon}</div>
+         <h5>${b.titre}</h5>
+       </div>
+       <ul class="enjeu-questions">
+         ${b.data.items.map(q => `<li>${q}</li>`).join('')}
+       </ul>
+     </div>`
+  ).join('');
+}
+
+COMPONENTS.init('accueil');
+</script>
+</body>
+</html>

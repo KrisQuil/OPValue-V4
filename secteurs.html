@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secteurs | OPValue+ – Operating Partners</title>
+<meta name="description" content="OPValue+ intervient dans de nombreux secteurs : industrie, santé, tech, négoce, agroalimentaire... Trouvez l'Operating Partner expert de votre secteur.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-inner">
+    <h1>Trouvez l'Operating Partner <em>expert de votre secteur</em></h1>
+  </div>
+</section>
+
+<!-- SECTEURS GRID -->
+<section class="secteurs-page">
+  <div class="secteurs-page-inner">
+    <p class="secteurs-intro reveal">Nos 7 Operating Partners couvrent ensemble un large spectre sectoriel, avec des missions concrètes et des résultats mesurables à l'appui. Cliquez sur un secteur pour découvrir les missions correspondantes.</p>
+    <div class="secteurs-cards" id="secteurs-cards"></div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <div class="cta-item reveal reveal-delay-1"><a href="equipe.html">Rencontrez l'équipe <span class="arrow">→</span></a></div>
+    <div class="cta-divider"></div>
+    <div class="cta-item reveal reveal-delay-2"><a href="contact.html">Parlons de vos enjeux <span class="arrow">→</span></a></div>
+  </div>
+</section>
+
+<script src="js/site-content.js"></script>
+<script src="js/site-images.js"></script>
+<script src="js/tous-les-membres.js"></script>
+<script src="js/membres/fp.js"></script>
+<script src="js/membres/ol.js"></script>
+<script src="js/membres/cq.js"></script>
+<script src="js/membres/fg.js"></script>
+<script src="js/membres/bdp.js"></script>
+<script src="js/membres/nb.js"></script>
+<script src="js/membres/bh.js"></script>
+<script src="js/components.js"></script>
+<script>
+const membres = COMPONENTS.getAllMembres();
+
+const SVG_ATTRS = `viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"`;
+
+const SECTEUR_ICONS = {
+  "Industrie & Ingénierie": `<svg ${SVG_ATTRS}>
+    <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+  </svg>`,
+
+  "Tech & IA": `<svg ${SVG_ATTRS}>
+    <rect x="4" y="4" width="16" height="16" rx="2"/>
+    <rect x="9" y="9" width="6" height="6"/>
+    <line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/>
+    <line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/>
+    <line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="15" x2="4" y2="15"/>
+    <line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="15" x2="22" y2="15"/>
+  </svg>`,
+
+  "Santé & Sciences de la vie": `<svg ${SVG_ATTRS}>
+    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+  </svg>`,
+
+  "Commerce & Distribution": `<svg ${SVG_ATTRS}>
+    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+    <line x1="12" y1="22.08" x2="12" y2="12"/>
+  </svg>`,
+
+  "Agroalimentaire & CHR": `<svg ${SVG_ATTRS}>
+    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/>
+    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+  </svg>`,
+
+  "Services & Conseil": `<svg ${SVG_ATTRS}>
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+    <circle cx="9" cy="7" r="4"/>
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+  </svg>`,
+
+  "Finance & Investissement": `<svg ${SVG_ATTRS}>
+    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+    <polyline points="17 6 23 6 23 12"/>
+  </svg>`,
+};
+
+// Construire index secteur → {nbMissions, ops}
+const secteurMap = {};
+membres.forEach(membre => {
+  if (!membre.missions) return;
+  membre.missions.forEach(mission => {
+    const s = mission.secteur || '—';
+    if (!secteurMap[s]) secteurMap[s] = { missions: 0, ops: new Set() };
+    secteurMap[s].missions++;
+    secteurMap[s].ops.add(`${membre.prenom} ${membre.nom}`);
+  });
+});
+
+const secteurs = Object.keys(secteurMap).sort((a, b) => a.localeCompare(b, 'fr'));
+
+// Render cartes secteurs
+document.getElementById('secteurs-cards').innerHTML = secteurs.map((s, i) => {
+  const { missions, ops } = secteurMap[s];
+  const icon = SECTEUR_ICONS[s] || '🔹';
+  const opList = [...ops].join(', ');
+  const delay = (i % 4) + 1;
+  return `<a href="references.html?secteur=${encodeURIComponent(s)}"
+            class="secteur-card reveal reveal-delay-${delay}"
+            title="Voir les missions ${s}">
+    <div class="secteur-card-icon">${icon}</div>
+    <div class="secteur-card-body">
+      <h3 class="secteur-card-name">${s}</h3>
+      <p class="secteur-card-ops">${opList}</p>
+    </div>
+    <div class="secteur-card-footer">
+      <span class="secteur-card-count">${missions} mission${missions > 1 ? 's' : ''}</span>
+      <span class="secteur-card-arrow">→</span>
+    </div>
+  </a>`;
+}).join('');
+
+COMPONENTS.init('secteurs');
+</script>
+</body>
+</html>
