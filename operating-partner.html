@@ -46,18 +46,19 @@
 
       <div class="op-def-highlights">
         <div class="op-highlight reveal reveal-delay-1">
-          <h5>×2.3</h5>
-          <p>Croissance moyenne EBITDA en missions accompagnées</p>
+          <h5>ROI ×7</h5>
+          <p>Sur les honoraires d'Operating Partner engagés</p>
         </div>
         <div class="op-highlight reveal reveal-delay-2">
-          <h5>46%</h5>
-          <p>Amélioration des KPIs opérationnels</p>
+          <h5>+2,1 M€</h5>
+          <p>De valeur créée par entreprise accompagnée</p>
         </div>
         <div class="op-highlight reveal reveal-delay-3">
-          <h5>2/3</h5>
-          <p>Des missions concluent par une acquisition ou transmission réussie</p>
+          <h5>+4,2 pts</h5>
+          <p>D'EBITDA gagnés en moyenne par mission</p>
         </div>
       </div>
+      <p class="op-def-source reveal">Sources : I&S Adviser, France Invest, livre blanc Deloitte / I&S Adviser « Operating Partners 2026 ».</p>
     </div>
 
     <div class="sidebar-press reveal reveal-delay-1" id="sidebar-monde-op">
@@ -79,6 +80,7 @@
         <thead>
           <tr>
             <th></th>
+            <th>Expert-comptable</th>
             <th>Cabinets de conseil</th>
             <th>Coachs</th>
             <th>Managers de transition</th>
@@ -89,6 +91,7 @@
         <tbody>
           <tr>
             <td>Diagnostic stratégique</td>
+            <td><span class="half">◐</span></td>
             <td><span class="check">✓</span></td>
             <td><span class="half">◐</span></td>
             <td><span class="none">–</span></td>
@@ -97,6 +100,7 @@
           </tr>
           <tr>
             <td>Décisions opérationnelles</td>
+            <td><span class="none">–</span></td>
             <td><span class="half">◐</span></td>
             <td><span class="none">–</span></td>
             <td><span class="check">✓</span></td>
@@ -105,6 +109,7 @@
           </tr>
           <tr>
             <td>Pilotage de la performance</td>
+            <td><span class="half">◐</span></td>
             <td><span class="none">–</span></td>
             <td><span class="none">–</span></td>
             <td><span class="check">✓</span></td>
@@ -113,6 +118,7 @@
           </tr>
           <tr>
             <td>Transformation du modèle</td>
+            <td><span class="none">–</span></td>
             <td><span class="half">◐</span></td>
             <td><span class="none">–</span></td>
             <td><span class="half">◐</span></td>
@@ -121,6 +127,7 @@
           </tr>
           <tr>
             <td>Engagement dans la durée</td>
+            <td><span class="check">✓</span></td>
             <td><span class="none">–</span></td>
             <td><span class="check">✓</span></td>
             <td><span class="none">–</span></td>
@@ -133,11 +140,12 @@
             <td><span class="none">–</span></td>
             <td><span class="none">–</span></td>
             <td><span class="none">–</span></td>
+            <td><span class="none">–</span></td>
             <td class="hl"><span class="check">✓</span></td>
           </tr>
         </tbody>
       </table>
-      <p class="comp-note">Le diagnostic stratégique se construit toujours <em>avec</em> le dirigeant. Sur nos secteurs de référence, notre apport est total.</p>
+      <p class="comp-note">Ces acteurs sont chacun spécialistes de leur domaine.<br>L'Operating Partner ne s'y substitue pas : il agit <em>à l'interface</em>, en orchestrant stratégie, exécution et transformation dans la durée.</p>
     </div>
   </div>
 </section>
@@ -169,15 +177,21 @@ if (typeof SITE_CONTENT !== 'undefined' && SITE_CONTENT.monde_op) {
   const rp = md.revue_presse || { titre: '', items: [] };
   const items = (rp.items || []).filter(i => i.actif !== false);
 
-  const itemsHtml = items.map(i => `
-    <div class="press-item">
+  const itemsHtml = items.map(i => {
+    const opBadge = i.op_intervient
+      ? `<div class="press-op-badge">Avec ${i.op_intervient}, OPValue+</div>`
+      : '';
+    return `
+    <div class="press-item${i.op_intervient ? ' press-item-opv' : ''}">
       <a href="${i.url}" target="_blank" rel="noopener">
         <div class="press-source">${i.source}</div>
         <div class="press-title">${i.titre}</div>
+        ${opBadge}
         <div class="press-date">${i.date}</div>
       </a>
     </div>
-  `).join('');
+  `;
+  }).join('');
 
   const sidebar = document.getElementById('sidebar-monde-op');
   if (sidebar) {

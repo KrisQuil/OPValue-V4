@@ -363,54 +363,61 @@ const SITE_CONTENT = {
   //   1. Copier un objet { ... } de la liste items ci-dessous
   //   2. Mettre actif: true pour l'afficher, false pour le masquer (sans supprimer)
   //   3. Renseigner source / titre / date / url
+  //   4. Optionnel : op_intervient = "Prénom Nom" si un OP OPValue+ est intervenu
+  //      (apparaît en badge orange "Avec [Nom], OPValue+")
   // ──────────────────────────────────────────────
   monde_op: {
     title: "Le monde de l'OP",
     revue_presse: {
-      titre: "Revue de presse et actualité",
+      titre: "Revue de presse et actualités",
       items: [
-        // Ordre : du plus récent au plus ancien
+        // Ordre : du plus récent au plus ancien (ou "à venir" en tête)
         {
-          actif:  true,
-          source: "Deloitte",
-          titre:  "Operating Partners : Deloitte et I&S Adviser publient leur référence sur la transformation et la performance",
-          date:   "Avril 2026",
-          url:    "https://www.deloitte.com/fr/fr/about/press-room/operating-partners.html",
+          actif:        true,
+          source:       "La Tribune",
+          titre:        "Operating Partners Day 2026 (à venir)",
+          date:         "Juin 2026",
+          url:          "https://operatingpartnersday.com/",
+          op_intervient:"Christophe Quille",
+        },
+        {
+          actif:        true,
+          source:       "Deloitte",
+          titre:        "Operating Partners : Deloitte et I&S Adviser publient leur référence sur la transformation et la performance",
+          date:         "Avril 2026",
+          url:          "https://www.deloitte.com/fr/fr/about/press-room/operating-partners.html",
+          op_intervient:"Frédéric Ploix",
         },
         {
           actif:  true,
           source: "Consultor",
-          titre:  "Ces nouveaux partenaires qui pilotent l'opérationnel",
+          titre:  "Operating partners : un métier proche du conseil en stratégie ?",
           date:   "Octobre 2025",
-          url:    "https://www.consultor.fr",
+          url:    "https://www.consultor.fr/articles/loperating-partner-descend-il-du-consultant-en-strategie",
         },
         {
-          actif:  true,
-          source: "Le Figaro",
-          titre:  "Qui sont les operating partners, ces conseillers de l'ombre des chefs d'entreprise ?",
-          date:   "Septembre 2025",
-          url:    "https://www.lefigaro.fr/decideurs/management/qui-sont-les-operating-partners-ces-conseillers-de-l-ombre-des-chefs-d-entreprise-20250926",
+          actif:        true,
+          source:       "Le Figaro",
+          titre:        "Qui sont les operating partners, ces conseillers de l'ombre des chefs d'entreprise ?",
+          date:         "Septembre 2025",
+          url:          "https://www.lefigaro.fr/decideurs/management/qui-sont-les-operating-partners-ces-conseillers-de-l-ombre-des-chefs-d-entreprise-20250926",
+          op_intervient:"Frédéric Galliath",
         },
         {
-          actif:  true,
-          source: "La Tribune",
-          titre:  "Operating Partners Day 2025, 3e édition",
-          date:   "Juin 2025",
-          url:    "https://operatingpartnersday.com/",
+          actif:        true,
+          source:       "Option Finance",
+          titre:        "Les operating partners, passeurs de bonnes pratiques auprès des entreprises",
+          date:         "Août 2025",
+          url:          "https://www.optionfinance.fr/carrieres/les-operating-partners-passeurs-de-bonnes-pratiques-aupres-des-entreprises.html",
+          op_intervient:"Frédéric Ploix",
         },
         {
-          actif:  true,
-          source: "Réussite Business",
-          titre:  "OPValue+ accélère l'exécution des plans de transformation",
-          date:   "Mars 2025",
-          url:    "https://www.reussite-business.com",
-        },
-        {
-          actif:  true,
-          source: "Option Finance",
-          titre:  "Les Operating Partners, des partenaires clés pour les ETI",
-          date:   "Novembre 2023",
-          url:    "https://www.option-finance.fr",
+          actif:        true,
+          source:       "Operating Partners Day",
+          titre:        "Operating partner : un métier, plusieurs manières de l'aborder",
+          date:         "Juin 2025",
+          url:          "https://evenements.optionfinance.fr/e/operating-partners-day-2025/session/e97f3005-97dc-ef11-88f8-6045bd89b60c/c-operating-partner-un-metier-plusieurs-manieres-de-l-aborder-",
+          op_intervient:"Frédéric Ploix et Frédéric Galliath",
         },
       ],
     },

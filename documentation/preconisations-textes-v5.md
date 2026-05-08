@@ -1,258 +1,289 @@
 # OPValue+ — Préconisations rédactionnelles V5
-## Bascule du discours « nous » vers un discours « client-first » orienté capture de leads
+## Bascule éditoriale « client-first » — sources : livre blanc Deloitte / I&S 2026 + benchmark concurrents
 
-**Date d'analyse** : 2026-04-30
-**Statut** : ⏸️ **REPORTÉ EN V5** — La V4 continue d'évoluer sur la structure avant la bascule éditoriale
-**Périmètre** : `js/site-content.js` (texte) — pas de modif HTML/CSS structurelle
-**Objectif** : convertir le site d'une vitrine descriptive en un outil de capture d'opportunités et de prises de contact
+**Création** : 2026-04-30
+**Mise à jour** : 2026-05-08 (post-livre blanc Deloitte)
+**Statut** : ~50 % appliqué au fil de l'eau pendant V4. Ce doc trace ce qui reste à exécuter au **Sprint 1 — Phase A (J1-J4)** avant la mise en prod.
 
 ---
 
-## 🎯 Décisions validées par CQ (2026-04-30) — à appliquer en V5
+## 1. Statut des décisions arrêtées au 2026-04-30
 
-| Question | Décision |
+| Décision initiale | Statut au 2026-05-08 |
 |---|---|
-| **Hero** | ✅ **Option B** (clivante : « Quand le conseil ne suffit plus » / « Un dirigeant aguerri à vos côtés. Au quotidien. Sur les résultats. ») |
-| **Mini-questions sur Situations** | ✅ **OK** — chaque thème devient une question client (« Mon EBITDA décroche, comment redresser sans casse ? » etc.) |
-| **Témoignages clients** | ⏸️ **Pas pour le moment** — repoussé après V5 |
-| **CTA principal** | ✅ **« Parlons-en »** — plus direct, à utiliser partout (à la place de « Réserver mon 1er échange ») |
-
-⚠️ **À ajuster en conséquence dans les réécritures ci-dessous** : remplacer tous les CTA suggérés (« Réserver mon 1er échange (1h, gratuit) », etc.) par **« Parlons-en »** au moment d'appliquer la V5.
+| **Hero option B clivante** *(« Quand le conseil ne suffit plus »)* | ❌ Non retenue. CQ a préféré le H1 actuel : *« Décider vite. Exécuter juste. Tenir le cap avec vous. »* (validé pendant V4) |
+| **Mini-questions sur Situations** | ⏸️ Partiel. La page **Vos situations** a été créée avec 7 scénarios formatés en signaux client. Les 9 « domaines » sur Notre approche restent en liste neutre (les enrichir avec questions est repoussé en S2 — point C). |
+| **Témoignages clients** | ⏸️ Toujours reporté (S6) |
+| **CTA principal « Parlons-en »** | ✅ Appliqué partout |
 
 ---
 
-## 1. Diagnostic chiffré du site actuel
+## 2. Diagnostic à jour (mesure 2026-05-08)
 
-### Ratio Nous / Vous
-
-Comptage rapide dans `site-content.js` (formes incluses : nous, notre, nos / vous, votre, vos) :
+### Comptage Nous / Vous dans `site-content.js`
 
 | Pronom | Occurrences |
 |---|---|
-| **Nous / Notre / Nos** | ~25 |
-| **Vous / Votre / Vos** | ~12 |
-| **Ratio nous:vous** | **2,1 : 1** |
+| **Nous / Notre / Nos** | **33** |
+| **Vous / Votre / Vos** | **13** |
+| **Ratio nous:vous** | **2,5 : 1** ⚠️ légèrement aggravé vs analyse initiale (était à 2,1:1) |
 
-**Cible recommandée** : ratio inversé, **1 nous pour 2 à 3 vous**. Sur un site lead gen B2B, la règle empirique est que chaque section doit ouvrir sur un bénéfice / une question / un besoin client avant de parler du prestataire.
+⚠️ L'ajout de contenu en V4 (page Vos situations, sidebar `monde_op`, descriptifs des 7 scénarios) a apporté de nouveaux « nous ». La V5 doit corriger ce déséquilibre.
 
-### Sections les plus auto-centrées (à réécrire en priorité)
+### Sections encore problématiques
 
-| Section | Verdict | Cause principale |
+| Section | Verdict | Cause |
 |---|---|---|
-| **Hero** | À retravailler | Sub-headline « Nous concevons. Nous agissons. Nous accompagnons. » = 100 % nous |
-| **Promesse** | À réécrire | Les 5 items commencent tous par « Nous… » |
-| **Définition OP** | À réécrire | « Nous sommes des Operating Partners » + 4 items en « Nous… » |
-| **Collectif** | À retravailler | Notre origine / Notre diversité / Notre écosystème — zéro bénéfice client |
-| **Situations** | À reformuler | « Les situations que **nous** adressons » |
-| **Enjeux** | OK | Bien tournée en questions client |
-| **Références** | OK | Chiffres factuels, parle d'impact |
-| **Démarrage** | OK | « Une conversation peut suffire… » très bonne accroche |
+| **Promesse** *(offre.html)* | À réécrire | 5 items qui commencent tous par « Nous… » |
+| **Définition OP** *(operating-partner.html)* | À réécrire | Subtitle « Nous sommes… » + 4 items en « Nous… » |
+| **Collectif** *(equipe.html)* | À retravailler | Notre origine / Notre diversité / Notre écosystème — zéro bénéfice client |
+| **Solution Phase 3** *(offre.html)* | À renommer | « Création de valeur » → terme à éviter (CQ : fait peur) |
+| **Title équipe** | À renommer | « Tous nos operating partners » → « Toute l'équipe » |
+| **Hero** | ✅ déjà fait V4 | H1 + sub-headline déjà reformulés |
+| **Situations / Domaines** | ✅ déjà fait V4 | Renommé « Nos domaines d'intervention » |
+| **Enjeux** | ✅ OK | Bien tournée en questions client |
+| **Références** | ✅ OK | Chiffres factuels |
 
 ---
 
-## 2. Benchmark concurrents
+## 3. Vocabulaire à intégrer
 
-| Critère | Hekze | Klaak | I&S Adviser | Stratora | **OPValue+** |
-|---|---|---|---|---|---|
-| **Tagline** | *Operating Partners as a Service* | *Des Operating Partners au service de projets…* | *1er réseau d'Operating Partners en France* | *Operating Partner Lyon — Co-pilotage stratégique* | *Operating Partners — Des dirigeants au service des dirigeants* |
-| **Cible primaire** | Fonds PE & participations | Dirigeants ETI/PME | Entrepreneurs PME | Dirigeants PME/TPE Lyon | Dirigeants + fonds (mixte) |
-| **Différenciateur** | EBITDA / IRR / cycle deal complet | Outil Jumpr + langage anti-conseil | Indépendance vs fonds + maillage territorial | Régional + alignement résultats | Certification OP Academy + collectif diversifié |
-| **Ton « nous » vs « vous »** | Mixte (60/40 vous) | Très orienté vous (« task force que **vous** attendiez ») | Auto-centré (parle beaucoup d'eux) | Orienté client (3 piliers émotionnels) | **Auto-centré** |
-| **Lead magnet / friction réduite** | Contact form classique | Formulaire structuré | Contact générique | Prise de RDV | Email + RDV |
-| **Promesse principale** | Performance + ESG + IA | Croissance saine et durable | Co-pilotage à 360° | Pragmatisme / Humanité / Résultats | Décider vite, exécuter juste, tenir le cap |
+### 3.1 Livre blanc Deloitte / I&S Adviser 2026
 
-### Ce qu'on peut emprunter
+**Concepts à privilégier** :
+- **Copilote (jamais pilote)** — la formule clé de la posture, à diffuser
+- **Pair / pair-à-pair** — relation entre dirigeants, déjà sur le hero
+- **Catalyseur du changement / sparring partner**
+- **Courroie de transmission** entre stratégie et exécution
+- **Engagement financier sur les résultats** — différenciant fort
+- **Présent / engagé dans la durée** — opposition au conseil ponctuel
+- **Capital humain comme vrai multiple**
+- **Discipline d'exécution**
+- **Transformer la stratégie en résultats** — le bénéfice net
+- **Rebond** *(ajouté par CQ 2026-05-08)*
 
-- **Klaak** : franchise du langage et orientation 100 % dirigeant (« la task force que vous attendiez », « la main droite, l'associé dont vous avez rêvé »)
-- **Hekze** : clarté de l'offre dans le cycle PE (avant-signing → exit)
-- **Stratora** : trio de piliers émotionnels (Pragmatisme / Humanité / Résultats) — porte mieux qu'une liste de 5 items
-- **I&S Adviser** : preuves chiffrées (« 70 co-pilotages », « 30 % des entreprises : CA + 50 % »)
+**Concepts à éviter** :
+- ❌ « Architecte » *(CQ 2026-05-08 : fait peur aux dirigeants)*
+- ⚠️ « Création de valeur » : **OK dans le corps des textes, à éviter dans les titres** *(CQ 2026-05-08 — trop financier/PE comme accroche, mais utilisable en explication)*
+- ❌ « Execution gap » *(jargon non traduit)*
+- ❌ « Exit readiness », « DPI », « Hold period » *(vocabulaire PE pur)*
+- ❌ Tirets cadratins *(non utilisés en français courant)*
 
-### Ce qu'OPValue+ a en propre et doit valoriser
+### 3.2 Concurrents (à emprunter sélectivement)
 
-1. **Collectif certifié OP Academy** (CAPOP) — différenciateur de crédibilité
-2. **Diversité des parcours** (DG, finance, transformation, industrie, tech, IA, marketing) — couverture rare
-3. **Engagement financier sur les résultats** — alignement vrai (Stratora le mentionne aussi mais brièvement)
-4. **Premier échange gratuit (2 × 1h)** — friction très basse pour le prospect
+| Concurrent | Vocabulaire empruntable |
+|---|---|
+| **Klaak** | « La task force que vous attendiez » *(« bras armé / main droite » écartés par CQ 2026-05-08 : implique subordination, l'OP garde son autonomie)* |
+| **Stratora** | « Co-exécutif temporaire » *(pas consultant, pas manager de transition)*, trio « Pragmatisme / Humanité / Résultats » |
+| **I&S Adviser** | « Ex-entrepreneurs accompagnant des entrepreneurs », indépendance vs fonds |
+| **Hekze** | Cycle complet (avant-signing → exit) — utile si cible PE renforcée |
+
+**⚠️ Principe à respecter** : le vocabulaire de l'OP ne doit **jamais suggérer une subordination au dirigeant** (« bras armé », « exécutant », « assistant »). L'OP est un **pair**, un **copilote**, un **co-exécutif** — il garde son autonomie et son regard tiers, c'est ce qui fait sa valeur.
+
+### 3.3 Vocabulaire OPValue+ à valoriser
+
+- **Certification CAPOP** (Operating Partners Academy)
+- **Collectif** (vs cabinet ou réseau franchisé)
+- **1<sup>er</sup> échange gratuit 2 × 1h**
+- **Engagement financier sur résultats**
+- **Frédéric Ploix cité dans le livre blanc Deloitte/I&S 2026** — élément de crédibilité institutionnelle à mettre en valeur
 
 ---
 
-## 3. Principes de réécriture
+## 4. Réécritures concrètes — à appliquer en V5
 
-| # | Principe | Application concrète |
+### 4.1 Promesse (offre.html) — section la plus prioritaire
+
+5 items à réécrire en bénéfices client. Vocabulaire Deloitte intégré (« copilote », « dans la durée », « pair »).
+
+| Icon | Titre | Texte |
 |---|---|---|
-| 1 | **Ouvrir chaque section par le client** | Premier mot = vous / votre / un verbe du quotidien client |
-| 2 | **Inverser le ratio** | Cible : 2-3 « vous » pour 1 « nous » |
-| 3 | **Bénéfice avant fonctionnalité** | Pas « nous faisons X » mais « vous obtenez Y » |
-| 4 | **Question ouverte > affirmation** | Active le « oui, c'est moi » du lecteur |
-| 5 | **Spécificité > généricité** | Chiffres, durées, formats — pas d'adjectifs creux |
-| 6 | **Preuve avant promesse** | Cas concrets visibles avant les engagements |
-| 7 | **Friction zéro sur le 1er pas** | CTA principal = action 1h gratuite, pas « contact » |
-| 8 | **Verbes au présent et à l'impératif client** | « Décidez plus vite », « Reprenez la main » |
+| 💡 | **Vous décidez plus vite, mieux** | Les vrais enjeux remontent. Les arbitrages deviennent évidents. |
+| ⚙️ | **Vous exécutez sans déperdition** | Les décisions se traduisent en actions concrètes, suivies, ajustées au quotidien. |
+| 🤝 | **Vous n'êtes plus seul** | Un copilote (jamais pilote) à qui vous pouvez tout dire. Un pair qui a déjà tenu la barre. |
+| 🌱 | **Vos résultats tiennent dans la durée** | Pas de feu de paille : une trajectoire que vos équipes pourront porter seules après le passage de l'OP. |
+| 🎯 | **Nos honoraires sont alignés sur vos résultats** | Une partie variable indexée sur l'impact. Vrai alignement, pas slogan. |
 
----
+**Note** : 1 seul « Nous » volontairement gardé sur le 5<sup>e</sup> item (engagement financier = différenciant identitaire revendiqué).
 
-## 4. Réécritures concrètes (avant / après)
+### 4.2 Définition OP (operating-partner.html)
 
-### 4.1 Section HERO
+**Subtitle** : « Nous sommes des Operating Partners » → « **Pourquoi un Operating Partner change la donne pour vous** »
 
-**Avant**
-```
-tagline:     "Operating Partners"
-headline:    "Des dirigeants au service des dirigeants"
-subheadline: "Nous concevons. Nous agissons. Nous accompagnons."
-cta_primary: "Découvrir notre approche"
-cta_secondary: "Prendre rendez-vous"
-```
+**4 items** :
 
-**Après (option A — proche de l'esprit actuel)**
-```
-tagline:     "Pour les dirigeants qui veulent accélérer"
-headline:    "Décidez vite. Exécutez juste. Tenez le cap."
-subheadline: "Des Operating Partners certifiés à vos côtés — au quotidien, sur les sujets qui comptent."
-cta_primary: "Réserver mon 1er échange (1h, gratuit)"
-cta_secondary: "Découvrir notre approche"
-```
-
-**Après (option B — plus clivante)**
-```
-tagline:     "Quand le conseil ne suffit plus"
-headline:    "Un dirigeant aguerri à vos côtés. Au quotidien. Sur les résultats."
-subheadline: "Operating Partner : ni cabinet, ni manager de transition. Un pair qui s'engage avec vous, jusqu'à l'exécution."
-cta_primary: "Tester un 1er échange (1h, gratuit)"
-cta_secondary: "Voir nos cas clients"
-```
-
-> **Reco** : option B. Elle clive le marché en posant immédiatement la différence avec les concurrents adjacents (cabinets, managers de transition). C'est le langage Klaak.
-
----
-
-### 4.2 Section PROMESSE
-
-**Avant** — titre « Notre promesse » + 5 items en « Nous… »
-
-**Après** — titre **« Ce que vous gagnez à travailler avec nous »**
-
-| Avant (Nous-centré) | Après (Vous-centré) |
+| Titre | Texte |
 |---|---|
-| 💡 Clarté stratégique — *Nous révélons l'essentiel pour rendre les décisions évidentes.* | 💡 **Vous décidez plus vite, mieux** — Les vrais enjeux remontent. Les arbitrages deviennent évidents. |
-| ⚙️ Exécution robuste — *Nous agissons concrètement pour adapter immédiatement la trajectoire.* | ⚙️ **Vous exécutez sans déperdition** — Les décisions se traduisent en actions concrètes, suivies, ajustées. |
-| 🤝 Sérénité du dirigeant — *Nous devenons des partenaires de confiance pour partager les décisions difficiles.* | 🤝 **Vous n'êtes plus seul** — Un pair aguerri, lucide, à qui vous pouvez tout dire. Confidentiel. |
-| 🌱 Création de valeur durable — *Nous transformons les actions en résultats mesurables, sécurisés et pérennes.* | 🌱 **Vos résultats tiennent dans la durée** — Pas de feu de paille : une trajectoire que vos équipes peuvent porter seules après nous. |
-| 🎯 Engagement total — *Nous nous impliquons au quotidien avec un alignement réel sur les résultats.* | 🎯 **Nos honoraires sont alignés sur vos résultats** — Une partie variable indexée sur l'impact. Vrai alignement, pas slogan. |
+| **« Quelqu'un qui a déjà fait »** | Pair-à-pair avec un dirigeant qui a tenu la barre, pas un consultant. |
+| **« Stratégie + exécution dans la même tête »** | Plus besoin d'un cabinet pour penser et d'une équipe pour faire. |
+| **« Vision 360° »** | Finance, opérations, commercial, RH, IA : votre entreprise vue en entier. |
+| **« Engagés financièrement sur vos résultats »** | Une partie de la rémunération dépend de votre réussite. |
 
-> Note : on garde un seul item commençant par « Nous » (le dernier) pour rappeler l'engagement spécifique d'OPValue+. C'est volontaire.
+### 4.3 Collectif (equipe.html)
 
----
+**Title** : « Notre collectif » → « **Une équipe choisie pour couvrir vos enjeux** »
 
-### 4.3 Section DÉFINITION OP
+**3 blocs** :
 
-**Avant**
-```
-title:    "Une relation de pair à pair, dans les moments importants"
-subtitle: "Nous sommes des Operating Partners"
-label:    "Un métier exigeant, une posture unique"
-items:
-  - Des expériences vécues — Nous avons déjà tenu la barre.
-  - Stratège opérationnel — Nous aidons à concevoir puis à exécuter.
-  - Vision 360° — Nous adressons tous les aspects de l'entreprise.
-  - Partenaire engagé — Nous nous engageons financièrement sur les résultats.
-```
-
-**Après**
-```
-title:    "Pourquoi un Operating Partner change la donne pour vous"
-subtitle: "Ni consultant. Ni manager de transition. Un pair qui s'engage."
-label:    "Ce qu'apporte un Operating Partner OPValue+"
-items:
-  - "Quelqu'un qui a vécu vos décisions" — Nous avons tenu la barre, pas commenté la mer.
-  - "Stratégie + exécution dans la même tête" — Vous n'avez plus besoin d'un cabinet pour penser et d'une équipe pour faire.
-  - "Une vue 360°, pas un silo" — Finance, opérations, commercial, RH, IA : on voit l'entreprise en entier.
-  - "Un alignement réel" — Une partie de notre rémunération dépend de votre réussite.
-```
-
----
-
-### 4.4 Section SITUATIONS
-
-**Avant** : `title: "Les situations que nous adressons"`
-
-**Après** : `title: "Les moments où nous intervenons à vos côtés"`
-
-(Liste des 9 thèmes inchangée — le titre suffit à inverser la posture.)
-
-> **Bonus possible** : remplacer chaque thème par une mini-question client. Exemple :
-> - Gouvernance & Actionnariat → *« Mon actionnariat évolue, comment garder la main ? »*
-> - Croissance & Scalabilité → *« Comment passer de 5 à 25 M€ sans casser l'organisation ? »*
-> - Résilience & Retournement → *« Mon EBITDA décroche, comment redresser sans casse ? »*
-
-C'est une option premium qui transforme la section en aimant à clic (chaque question peut renvoyer à un cas client).
-
----
-
-### 4.5 Section COLLECTIF
-
-**Avant** — « Notre collectif » / « Notre origine / Notre diversité / Notre écosystème »
-
-**Après** — **« Une équipe choisie pour couvrir tous vos enjeux »**
-
-| Avant | Après |
+| Titre | Texte |
 |---|---|
-| **Notre origine** : Un collectif d'anciens dirigeants… | **Des pairs, pas des consultants** : Tous ont dirigé. Tous sont certifiés Operating Partner (CAPOP). Vous parlez à quelqu'un qui a fait, pas à quelqu'un qui a lu. |
-| **Notre diversité** : Des parcours en direction générale, finance… | **La bonne expertise au bon moment** : DG, finance, transformation, industrie, tech, IA, marketing. Vous n'avez jamais à expliquer votre métier. |
-| **Notre écosystème** : Un réseau d'experts spécialisés… | **Un réseau qui s'active pour vous** : Quand un sujet sort de notre périmètre, nos experts spécialisés prennent le relais. Pas de lacune, pas de re-briefing. |
+| **« Des pairs, pas des consultants »** | Tous ont dirigé. Tous sont certifiés CAPOP. Vous parlez à quelqu'un qui a fait, pas à quelqu'un qui a lu. |
+| **« L'expertise au bon moment »** | DG, finance, transformation, industrie, tech, IA, marketing. Vous n'expliquez jamais votre métier. |
+| **« Un réseau qui s'active pour vous »** | Quand un sujet sort du périmètre, l'écosystème prend le relais. Pas de lacune, pas de re-briefing. |
+
+### 4.4 Solution Phase 3 (offre.html)
+
+Renommage du label de la 3<sup>e</sup> phase :
+- Avant : `code: "Création de valeur"` *(terme à éviter)*
+- Après : `code: "Activer les leviers"` ou `code: "Sécuriser le départ"`
+
+Le titre interne « Sécuriser le point de départ » reste inchangé.
+
+### 4.5 Title page Équipe (equipe.html)
+
+`title: "Tous nos operating partners"` → `title: "Toute l'équipe"`
+
+(supprime « nos »)
+
+### 4.6 Phrase d'intro de Vos situations
+
+Actuelle :
+> *« Ce qui amène les dirigeants et les fonds à nous appeler, ce ne sont pas des concepts. Ce sont des signaux concrets. Voici les plus fréquents, et ce que nous y apportons. »*
+
+Reformulée (1 seul « nous » au lieu de 2) :
+> *« Ce qui amène les dirigeants et les fonds à appeler un Operating Partner, ce ne sont pas des concepts. Ce sont des signaux concrets. Voici les plus fréquents, et ce qu'OPValue+ y apporte. »*
 
 ---
 
-### 4.6 Section CONTACT
+## 5. Apports nouveaux du livre blanc Deloitte (à intégrer en V5)
 
-**Avant**
-```
-title:    "Et contactez-le !"
-subtitle: "Premiers échanges : 2 × 1h pour comprendre vos enjeux. C'est rapide et c'est gratuit."
-```
+### 5.1 Encart citation livre blanc — Le monde de l'OP
 
-**Après**
-```
-title:    "Parlons de votre situation"
-subtitle: "1h, en visio ou sur site, pour comprendre où vous en êtes et voir si on peut être utiles. Sans engagement, sans présentation Powerpoint."
-```
+Ajouter un encart valorisant la citation de **Frédéric Ploix** dans le livre blanc Deloitte / I&S 2026 :
+
+> 📰 *« Frédéric Ploix, Operating Partner OPValue+, est cité dans le livre blanc Deloitte / I&S Adviser 2026 sur le rôle des Operating Partners. »*
+> [Lien vers le livre blanc]
+
+Position : dans la sidebar « Revue de presse », élever le livre blanc en première position avec une mise en valeur visuelle (encadré orange, badge « Citation OPValue+ »).
+
+### 5.2 Citations à reprendre dans Le monde de l'OP
+
+3 citations issues du livre blanc à intégrer dans le corps de la définition (en blockquotes) :
+
+> *« Le rendement ne vient plus seulement de la finance, il vient de la transformation opérationnelle. »*
+> — Arnaud Dufer, Head of Expansion France, Ardian
+
+> *« L'IA ne doit pas être une vitrine technologique ; elle doit produire un effet 'argent à la banque'. »*
+> — François Candelon, Operating Partner, Seven2
+
+> *« Le rôle de l'OP : courroie de transmission entre la stratégie et les décisions prises au quotidien par les équipes opérationnelles. »*
+> — Synthèse Deloitte / I&S 2026
+
+### 5.3 Données à mettre en valeur (sources externes)
+
+À citer comme **données du marché** (pas comme données OPValue+) :
+- **+170 ×** le nombre d'OPs en France en 5 ans *(LinkedIn, cité Deloitte)*
+- **80 %** des fonds PE utilisent des OPs *(France Invest)*
+- **+72 %** de demandes directes de dirigeants *(I&S Adviser / OP Academy)*
+- **ROI x7** sur les honoraires d'OP *(I&S Adviser, France Invest)*
+
+### 5.4 Décisions reportées (validées CQ 2026-05-08)
+
+| Apport livre blanc | Décision CQ |
+|---|---|
+| Restructurer Notre approche autour des 3 axes (croissance / marges / cash) | ⏸️ **Stand by** — à reconsidérer en S5+ |
+| Format « Enjeu opérationnel / Impact / Priorité » sur les scénarios | ⏸️ **Reporté en S2** (humanisation OP + enrichissement scénarios) |
+| Architecture « publications par OP » (B') | ⏸️ **Préparée maintenant**, contenu rempli au S5 |
 
 ---
 
-## 5. Lead generation — quick wins (au-delà du texte)
+## 6. Comptage Nous / Vous attendu après V5
 
-Ces points dépassent la simple réécriture mais maximisent la conversion :
+| Section | Nous avant | Nous après | Vous avant | Vous après |
+|---|---|---|---|---|
+| Promesse | 5 | 1 | 0 | 5 |
+| Définition OP | 5 | 0 | 0 | 4 |
+| Collectif | 4 | 1 | 0 | 4 |
+| Title équipe | 1 | 0 | 0 | 0 |
+| Phase 3 solution | 1 *(création de valeur)* | 0 | 0 | 0 |
+| Intro Vos situations | 2 | 1 | 0 | 0 |
+| **Total estimé** | **~33** | **~12** | **~13** | **~26** |
 
-1. **CTA sticky permanent** — Un bouton « Échange découverte 1h » visible en haut/bas sur toutes les pages, pas seulement en fin de page.
-2. **Formulaire qualifiant léger** — En plus de l'email, 3 champs : taille d'entreprise (< 10 / 10-50 / 50-250 / > 250 M€), secteur, sujet (croissance / retournement / cession / autre). Ça pré-qualifie sans friction.
-3. **Lead magnet asynchrone** — Un mini-questionnaire « Diagnostic flash en 5 questions » qui renvoie un score + recommandation. Faisable en JS pur, capte les visiteurs pas prêts pour un RDV.
-4. **Témoignages nommés ou semi-anonymisés** — La section *Références & impacts* a les chiffres mais pas les voix. Une citation client (« Sans OPValue+, on aurait perdu 6 mois ») par catégorie change le poids émotionnel.
-5. **Tracking des CTAs** — Plausible ou Matomo pour mesurer ce qui convertit (et arrêter de deviner).
+**Ratio cible après V5** : ~12 nous : 26 vous ≈ **1 nous pour 2,2 vous** ✓
+
+(Cible initiale : 1 pour 2-3, atteinte.)
 
 ---
 
-## 6. Plan d'action priorisé
+## 7. Plan d'application — Sprint 1 Phase A
 
-| Priorité | Action | Effort | Impact |
+### Tâches concrètes
+
+| # | Tâche | Fichier | Effort |
 |---|---|---|---|
-| 🔴 P1 | Réécrire HERO (option B) + PROMESSE | 1h | Très fort — c'est ce que les visiteurs voient en premier |
-| 🔴 P1 | Renommer titre Situations + ajouter mini-questions | 30min | Fort — transforme une liste plate en aimant à clic |
-| 🟠 P2 | Réécrire DÉFINITION OP + COLLECTIF | 1h30 | Fort — ce sont les sections les plus auto-centrées |
-| 🟠 P2 | Reformuler CONTACT + CTAs | 30min | Moyen-fort — friction de conversion |
-| 🟡 P3 | Témoignages clients (1 par catégorie de référence) | À récolter | Fort mais bloqué par dispo des clients |
-| 🟡 P3 | Lead magnet « Diagnostic flash 5 questions » | 1 demi-journée dev | Fort sur le long terme |
-| 🟢 P4 | Tracking analytics (Plausible / Matomo) | 1h | Mesure — pas conversion directe |
+| 1 | Réécriture des 5 items de Promesse | `js/site-content.js` | 30 min |
+| 2 | Réécriture du subtitle + 4 items de Définition OP | `js/site-content.js` | 30 min |
+| 3 | Réécriture du titre + 3 blocs de Collectif | `js/site-content.js` | 30 min |
+| 4 | Renommage Phase 3 « Création de valeur » → « Activer les leviers » | `js/site-content.js` | 5 min |
+| 5 | Title équipe : « Tous nos operating partners » → « Toute l'équipe » | `js/site-content.js` | 2 min |
+| 6 | Reformulation intro Vos situations (-2 nous, +0 vous mais plus neutre) | `js/site-content.js` | 5 min |
+| 7 | Encart citation livre blanc Deloitte + Frédéric Ploix | `operating-partner.html` + sidebar | 45 min |
+| 8 | Insertion 3 blockquotes Deloitte dans Le monde de l'OP | `operating-partner.html` | 30 min |
+| 9 | Vérification finale Nous/Vous (comptage bash) | terminal | 5 min |
+| 10 | Mise à jour du `CHANGELOG-V4.md` | `documentation/` | 10 min |
 
-**Recommandation** : faire P1 + P2 dans une seule itération de réécriture (V4.1), pousser online, puis observer 4 semaines avant les P3-P4.
+**Total** : ~3h30 de réécriture, dans le Sprint 1 - Phase A (J1-J4).
+
+### Validation finale avant exécution
+
+Avant d'appliquer ces réécritures dans `site-content.js` au démarrage du Sprint 1, faire valider une dernière fois par CQ :
+- Le wording exact des 5 items Promesse
+- Le wording exact des 4 items Définition OP
+- Le wording exact des 3 blocs Collectif
+- Le label Phase 3 (« Activer les leviers » ou autre ?)
 
 ---
 
-## 7. Décisions à valider avant exécution
+## 8. Architecture publications (B') — préparable maintenant
 
-1. **Hero option A ou B** ? (B clivante, A plus consensuelle)
-2. **Mini-questions sur Situations** : on y va ou on garde la liste actuelle ?
-3. **Témoignages** : tu peux solliciter 3-4 clients pour des verbatims courts ? (1 phrase suffit)
-4. **CTA principal** : « Réserver mon 1er échange » vs « Tester un 1er échange » vs « Parlons-en » ?
+### Structure data proposée
 
-*Une fois ces 4 points tranchés, je peux livrer la V4.1 du `site-content.js` directement applicable.*
+À ajouter dans chaque fichier OP (`js/membres/*.js`) :
+
+```js
+publications: [
+  {
+    actif:  true,
+    type:   "Article presse",     // ou "Article LinkedIn", "Table ronde", "Podcast", "Livre blanc", "Interview"
+    source: "Le Figaro",
+    titre:  "...",
+    date:   "2026-09",
+    url:    "https://...",
+    role:   "cité",                // ou "auteur", "contributeur", "interviewé"
+  },
+  // ...
+],
+```
+
+### Agrégation et affichage
+
+- Aggregateur dans `js/tous-les-membres.js` (similaire au pattern missions)
+- Affichage dans la sidebar Le monde de l'OP : tous les items triés par date, filtrables par type
+- Affichage dans la fiche OP dédiée (Sprint 2) : seulement les publications de cet OP
+- Encart spécial pour publications phares (badge orange « Citation OPValue+ »)
+
+**Effort** : ~1h pour la mécanique. Contenu à remplir au fil de l'eau (voir S5).
+
+---
+
+## 9. Suivi
+
+| Date | Statut |
+|---|---|
+| 2026-04-30 | Doc créé, décisions initiales arrêtées par CQ |
+| 2026-05-07 | Mise à jour du statut V4/V5 ; V5 intégrée au Sprint 1 |
+| 2026-05-08 | Mise à jour avec analyse livre blanc Deloitte/I&S 2026 + nouveau diagnostic Nous/Vous + vocabulaire intégré |
+
+---
+
+*Doc à jour 2026-05-08 — sera relu en début de Sprint 1 et mis à jour si CQ ajuste les réécritures.*
