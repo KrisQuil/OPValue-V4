@@ -48,7 +48,7 @@
         resultat:               "Le président a racheté 95% de la société, 5% au management. Le prix a été de -50% du prix initial des vendeurs. Le financement s’est fait grâce à un crédit vendeur de 25% du prix.",
       },
       {
-        client:                 "Orata",
+        client:                 "Confidentiel",
         client_logo:            null,
         contexte:               "PME Logiciels (cession M&A)",
         type:                   "Transmission & Cession",
