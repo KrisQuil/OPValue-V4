@@ -256,7 +256,10 @@ const SITE_CONTENT = {
   // ──────────────────────────────────────────────
   references: {
     title:    "Références & impacts",
-    subtitle: "+ 100 M€ de valeur générée, captée, ou sécurisée en 35 missions",
+    // Le nombre de missions est injecté dynamiquement par COMPONENTS.injectMissionsCount()
+    // (jeton {n} remplacé au rendu). Modifier dans les .html porteurs (references.html big-stat-sub)
+    // qui utilisent l'attribut data-missions-count-text.
+    subtitle: "+ 100 M€ de valeur générée, captée, ou sécurisée en {n} missions",
     categories: [
       {
         titre: "Transformations & redressements",

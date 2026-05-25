@@ -144,6 +144,38 @@ const COMPONENTS = {
   },
 
   /**
+   * Retourne le nombre total de missions cumulées sur l'ensemble du collectif.
+   * Calculé dynamiquement à partir des fichiers `js/membres/*.js`.
+   * Sert à éviter les "35 missions" en dur dans le HTML.
+   */
+  getTotalMissionsCount() {
+    return this.getAllMembres().reduce((acc, m) => acc + ((m.missions || []).length), 0);
+  },
+
+  /**
+   * Injecte le compteur de missions dans tous les éléments du DOM marqués :
+   *   - [data-missions-count]      → remplace le contenu par le nombre brut (ex: 37)
+   *   - [data-missions-count-text] → remplace les jetons `{n}` du contenu par le nombre
+   *
+   * Exemple HTML :
+   *   <h3 data-missions-count>—</h3>
+   *   <p data-missions-count-text>de valeur générée en {n} missions</p>
+   */
+  injectMissionsCount() {
+    const n = this.getTotalMissionsCount();
+    document.querySelectorAll('[data-missions-count]').forEach(el => {
+      el.textContent = String(n);
+    });
+    document.querySelectorAll('[data-missions-count-text]').forEach(el => {
+      // Remplacement dans textContent pour préserver le HTML environnant si pas de balises imbriquées,
+      // sinon remplacement de innerHTML (les valeurs du dataset sont contrôlées côté dev, pas XSS).
+      const tpl = el.dataset.tpl || el.innerHTML;
+      if (!el.dataset.tpl) el.dataset.tpl = el.innerHTML; // mémorise le template pour re-render éventuel
+      el.innerHTML = tpl.replace(/\{n\}/g, String(n));
+    });
+  },
+
+  /**
    * Initialisation complète d'une page
    * @param {string} activePage - identifiant de la page active
    */
@@ -152,5 +184,6 @@ const COMPONENTS = {
     this.renderFooter();
     this.initReveal();
     this.injectPortraits();
+    this.injectMissionsCount();
   }
 };

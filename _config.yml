@@ -1,0 +1,39 @@
+# Jekyll / GitHub Pages — configuration de publication
+#
+# Tout fichier ou dossier listé ci-dessous NE SERA PAS publié sur https://krisquil.github.io/OPValue-V4/
+# Référence : https://jekyllrb.com/docs/configuration/options/#global-configuration
+#
+# Mise en place le 25/05/2026 suite à l'audit sécurité (fuite documents internes).
+
+exclude:
+  # Documents internes du projet (roadmap, changelog, préconisations V5, vocabulaire,
+  # mini-spec, arbitrages…). Ne doivent JAMAIS être publics — ils exposent
+  # diagnostics internes, comparatifs concurrents, validations en attente par OP.
+  - documentation/
+
+  # Fiches missions Word internes des 7 OPs (versions narratives plus détaillées
+  # que le site, contenant des informations potentiellement sensibles client).
+  - missions/
+
+  # Fichiers de pilotage IA / instructions internes
+  - CLAUDE.md
+
+  # Audits internes éventuels déposés à la racine
+  - "Audit_*.docx"
+  - "Audit_*.md"
+
+  # Backups d'images (gros fichiers non destinés à la production)
+  - "images/_backup-*"
+  - "images/*-original.*"
+
+  # Sécurité : config Jekyll elle-même (par défaut Jekyll l'exclut, mais on le rend explicite)
+  - _config.yml
+
+  # OS / éditeurs
+  - .DS_Store
+  - Thumbs.db
+  - "*.swp"
+  - "*~"
+
+# Pas de plugins Jekyll, le site est en HTML statique pur.
+# Ce _config.yml sert uniquement à filtrer les fichiers publiés.
