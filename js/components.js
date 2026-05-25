@@ -16,10 +16,10 @@ const COMPONENTS = {
     const pages = [
       { id: "situations",label: "Vos situations",       href: "vos-situations.html" },
       { id: "op",        label: "Le monde de l'OP",     href: "operating-partner.html" },
-      { id: "offre",     label: "Notre approche",       href: "offre.html" },
-      { id: "secteurs",  label: "Secteurs",            href: "secteurs.html" },
-      { id: "references",label: "Nos missions",        href: "references.html" },
-      { id: "equipe",    label: "L'équipe",            href: "equipe.html" },
+      { id: "offre",     label: "Approche",             href: "offre.html" },
+      { id: "secteurs",  label: "Secteurs",             href: "secteurs.html" },
+      { id: "references",label: "Missions",             href: "references.html" },
+      { id: "equipe",    label: "L'équipe",             href: "equipe.html" },
     ];
 
     const links = pages.map(p =>
@@ -36,9 +36,12 @@ const COMPONENTS = {
         ${links}
         <a href="contact.html" class="nav-cta">Parlons-en</a>
       </div>
-      <div class="nav-burger" id="navBurger">
+      <button type="button" class="nav-burger" id="navBurger"
+              aria-label="Ouvrir le menu de navigation"
+              aria-expanded="false"
+              aria-controls="navLinks">
         <span></span><span></span><span></span>
-      </div>
+      </button>
     `;
 
     document.body.prepend(nav);
@@ -48,9 +51,13 @@ const COMPONENTS = {
       nav.classList.toggle('scrolled', window.scrollY > 60);
     });
 
-    // Burger menu
-    document.getElementById('navBurger').addEventListener('click', () => {
-      document.getElementById('navLinks').classList.toggle('open');
+    // Burger menu — accessible (button + aria-expanded synchronisé)
+    const burger = document.getElementById('navBurger');
+    const navLinks = document.getElementById('navLinks');
+    burger.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      burger.setAttribute('aria-label', isOpen ? 'Fermer le menu de navigation' : 'Ouvrir le menu de navigation');
     });
 
     // Smooth scroll for anchor links on same page
@@ -83,9 +90,9 @@ const COMPONENTS = {
         <div class="footer-links">
           <a href="vos-situations.html">Vos situations</a>
           <a href="operating-partner.html">Le monde de l'OP</a>
-          <a href="offre.html">Notre approche</a>
+          <a href="offre.html">Approche</a>
           <a href="secteurs.html">Secteurs</a>
-          <a href="references.html">Nos missions</a>
+          <a href="references.html">Missions</a>
           <a href="equipe.html">L'équipe</a>
           <a href="contact.html">Contact</a>
         </div>

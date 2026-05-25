@@ -8,13 +8,34 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+<!-- SEO : canonical + Open Graph + Twitter Card -->
+<link rel="canonical" href="https://krisquil.github.io/OPValue-V4/equipe.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OPValue+">
+<meta property="og:title" content="L'équipe | OPValue+ – Operating Partners">
+<meta property="og:description" content="Découvrez nos Operating Partners : des dirigeants expérimentés et complémentaires, formés au programme CAPOP.">
+<meta property="og:url" content="https://krisquil.github.io/OPValue-V4/equipe.html">
+<meta property="og:image" content="https://krisquil.github.io/OPValue-V4/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="L'équipe | OPValue+ – Operating Partners">
+<meta name="twitter:description" content="Découvrez nos Operating Partners : des dirigeants expérimentés et complémentaires, formés au programme CAPOP.">
+<meta name="twitter:image" content="https://krisquil.github.io/OPValue-V4/images/og-image.jpg">
 </head>
 <body>
 
 <!-- PAGE HEADER -->
 <section class="page-header">
   <div class="page-header-inner">
-    <h1>Un groupe de dirigeants aguerris, alignés, <em>complémentaires</em></h1>
+    <h1>À vos côtés, des dirigeants qui ont déjà <em>tenu la barre</em></h1>
   </div>
 </section>
 
@@ -23,7 +44,6 @@
   <div class="collectif-inner">
     <div class="collectif-top">
       <div class="collectif-intro">
-        <div class="section-label reveal">Qui sommes-nous ?</div>
         <h2 class="section-title reveal">Notre <em>collectif</em></h2>
         <p class="collectif-desc reveal" id="collectif-lead"></p>
       </div>
@@ -100,6 +120,7 @@ if (membres && membres.length > 0) {
 
     const card = document.createElement('div');
     card.className = `member reveal reveal-delay-${(idx%4)+1}`;
+    card.id = `fiche-${m.id}`;  // ancre pour liens depuis les cartes mission (references.html)
     card.innerHTML = `
       <div class="member-top">
         <div class="member-avatar">

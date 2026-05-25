@@ -8,6 +8,27 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+<!-- SEO : canonical + Open Graph + Twitter Card -->
+<link rel="canonical" href="https://krisquil.github.io/OPValue-V4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OPValue+">
+<meta property="og:title" content="OPValue+ | Operating Partners – Décider, exécuter, tenir le cap">
+<meta property="og:description" content="OPValue+ réunit des dirigeants expérimentés qui interviennent comme Operating Partners pour aider les entreprises à décider, transformer et exécuter.">
+<meta property="og:url" content="https://krisquil.github.io/OPValue-V4/">
+<meta property="og:image" content="https://krisquil.github.io/OPValue-V4/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OPValue+ | Operating Partners – Décider, exécuter, tenir le cap">
+<meta name="twitter:description" content="OPValue+ réunit des dirigeants expérimentés qui interviennent comme Operating Partners pour aider les entreprises à décider, transformer et exécuter.">
+<meta name="twitter:image" content="https://krisquil.github.io/OPValue-V4/images/og-image.jpg">
 </head>
 <body>
 
@@ -16,13 +37,22 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <h1>Décider vite. Exécuter juste. Tenir le cap <em>avec vous</em>.</h1>
-    <p class="hero-sub">Operating Partners. Des pairs et copilotes à vos côtés dans les phases de croissance, transformation, rebond. Vision 360°, engagés financièrement sur vos résultats, dans la durée.</p>
+    <h1>Décider vite. Exécuter juste.<br>Tenir le cap <em>avec vous</em>.</h1>
+    <p class="hero-sub">Operating Partners.<br>Des pairs et copilotes à vos côtés dans les phases de croissance, transformation, rebond. Vision 360°, engagés financièrement sur vos résultats, dans la durée.</p>
     <div class="hero-stats">
       <div class="hero-stat"><h3>+100M€</h3><p>de valeur générée</p></div>
-      <div class="hero-stat"><h3>25+</h3><p>missions réalisées</p></div>
+      <div class="hero-stat"><h3>35</h3><p>missions réalisées</p></div>
       <div class="hero-stat"><h3>7</h3><p>Operating Partners</p></div>
     </div>
+  </div>
+</section>
+
+<!-- OFFER CALLOUT — 1er échange gratuit (Bertrand DP feedback) -->
+<section class="offer-callout">
+  <div class="offer-callout-inner">
+    <span class="offer-callout-badge">Sans engagement</span>
+    <p class="offer-callout-text">Démarrons par <strong>2 × 1h d'échange, gratuit</strong>, pour comprendre vos enjeux.</p>
+    <a href="contact.html" class="offer-callout-cta">Réserver un premier échange →</a>
   </div>
 </section>
 
@@ -75,10 +105,14 @@
 const C = SITE_CONTENT;
 
 // Enjeux : 2 blocs Dirigeants / Investisseurs avec questions détaillées
+// Icônes SVG line-art harmonisées avec celles de la page Secteurs
 if (C.enjeux) {
+  const SVG_ATTRS = `viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"`;
+  const ICON_DIRIGEANTS = `<svg ${SVG_ATTRS}><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`;
+  const ICON_INVESTISSEURS = `<svg ${SVG_ATTRS}><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`;
   const blocs = [
-    { key: 'dirigeants',    icon: '🎯', titre: 'Dirigeants',    data: C.enjeux.dirigeants },
-    { key: 'investisseurs', icon: '📊', titre: 'Investisseurs', data: C.enjeux.investisseurs },
+    { key: 'dirigeants',    icon: ICON_DIRIGEANTS,    titre: 'Dirigeants',    data: C.enjeux.dirigeants },
+    { key: 'investisseurs', icon: ICON_INVESTISSEURS, titre: 'Investisseurs', data: C.enjeux.investisseurs },
   ];
   document.getElementById('enjeux-two').innerHTML = blocs.map((b, i) =>
     `<div class="enjeu-col reveal reveal-delay-${i+1}">

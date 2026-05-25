@@ -103,31 +103,32 @@ const SITE_CONTENT = {
   promesse: {
     title:    "Notre promesse",
     subtitle: "Décider vite. Exécuter juste. Tenir le cap avec vous.",
+    // icon = clé d'icône SVG (mappée dans offre.html) — ne pas mettre d'emoji
     items: [
       {
-        icon:  "💡",
+        icon:  "lightbulb",
         titre: "Clarté stratégique",
-        texte: "Nous révélons l'essentiel pour rendre les décisions évidentes.",
+        texte: "Nous révélons l'essentiel pour prioriser les décisions évidentes.",
       },
       {
-        icon:  "⚙️",
+        icon:  "zap",
         titre: "Exécution robuste",
         texte: "Nous agissons concrètement pour adapter immédiatement la trajectoire.",
       },
       {
-        icon:  "🤝",
+        icon:  "shield",
         titre: "Sérénité du dirigeant",
         texte: "Nous devenons des partenaires de confiance pour partager les décisions difficiles.",
       },
       {
-        icon:  "🌱",
+        icon:  "sprout",
         titre: "Création de valeur durable",
         texte: "Nous transformons les actions en résultats mesurables, sécurisés et pérennes.",
       },
       {
-        icon:  "🎯",
+        icon:  "anchor",
         titre: "Engagement total",
-        texte: "Nous nous impliquons au quotidien avec un alignement réel sur les résultats.",
+        texte: "Nous nous impliquons au quotidien et dans la durée, avec un alignement réel sur les résultats.",
       },
     ],
   },
@@ -212,6 +213,7 @@ const SITE_CONTENT = {
       {
         code:  "Création de valeur",
         titre: "Sécuriser le point de départ",
+        badge: "Sur devis",
         items: [
           "Identifier les leviers immédiats",
           "Prioriser les actions à fort impact",
@@ -221,6 +223,7 @@ const SITE_CONTENT = {
       {
         code:  "Garantir l'exécution",
         titre: "Transformer et ancrer la performance",
+        badge: "Sur devis",
         items: [
           "Concrétiser les décisions",
           "Co-piloter avec le dirigeant",
@@ -253,7 +256,7 @@ const SITE_CONTENT = {
   // ──────────────────────────────────────────────
   references: {
     title:    "Références & impacts",
-    subtitle: "+ 100 M€ de valeur générée, captée, ou sécurisée en 25 missions",
+    subtitle: "+ 100 M€ de valeur générée, captée, ou sécurisée en 35 missions",
     categories: [
       {
         titre: "Transformations & redressements",
@@ -296,7 +299,7 @@ const SITE_CONTENT = {
   // ──────────────────────────────────────────────
   situations_scenarios: {
     title: "Vous reconnaissez votre situation ?",
-    intro: "Ce qui amène les dirigeants et les fonds à nous appeler, ce ne sont pas des concepts. Ce sont des signaux concrets. Voici les plus fréquents, et ce que nous y apportons.",
+    intro: "Ce qui vous amène, dirigeants et fonds d'investissement, à nous contacter, ce ne sont pas des concepts. Ce sont des signaux concrets. Voici les plus fréquents, et ce que nous y apportons.",
     cartes: [
       {
         type:    "Transformation",
@@ -320,7 +323,7 @@ const SITE_CONTENT = {
         type:    "Croissance",
         theme:   "Gouvernance & Actionnariat",
         signal:  "Un fonds vient d'entrer au capital, ils demandent un Operating Partner",
-        demande: "Co-piloter avec le fonds et tenir le plan de création de valeur",
+        demande: "Établir la confiance, co-piloter avec le dirigeant et tenir le plan de création de valeur",
       },
       {
         type:    "M&A",

@@ -3,25 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Notre approche | OPValue+ – Operating Partners</title>
+<title>Approche | OPValue+ – Operating Partners</title>
 <meta name="description" content="La solution OPValue+ en 4 étapes : premier échange gratuit, Diag Flash, OBR/IBR, puis accompagnement à l'exécution.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+<!-- SEO : canonical + Open Graph + Twitter Card -->
+<link rel="canonical" href="https://krisquil.github.io/OPValue-V4/offre.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OPValue+">
+<meta property="og:title" content="Notre approche | OPValue+ – Operating Partners">
+<meta property="og:description" content="La solution OPValue+ en 4 étapes : premier échange gratuit, Diag Flash, OBR/IBR, puis accompagnement à l'exécution.">
+<meta property="og:url" content="https://krisquil.github.io/OPValue-V4/offre.html">
+<meta property="og:image" content="https://krisquil.github.io/OPValue-V4/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Notre approche | OPValue+ – Operating Partners">
+<meta name="twitter:description" content="La solution OPValue+ en 4 étapes : premier échange gratuit, Diag Flash, OBR/IBR, puis accompagnement à l'exécution.">
+<meta name="twitter:image" content="https://krisquil.github.io/OPValue-V4/images/og-image.jpg">
 </head>
 <body>
 
 <!-- PAGE HEADER -->
 <section class="page-header">
   <div class="page-header-inner">
-    <h1>Une solution qui relie stratégie, exécution et <em>engagement</em></h1>
+    <h1>Stratégie. Exécution. Engagement. <em>À vos côtés.</em></h1>
   </div>
 </section>
 
 <!-- PROMESSE -->
 <section class="promise" id="promesse">
   <div class="promise-inner">
-    <div class="section-label reveal">Notre promesse</div>
     <h2 class="section-title reveal">Décider vite. Exécuter juste. Tenir le cap <em>avec vous.</em></h2>
     <div class="promise-grid" id="prom-grid"></div>
   </div>
@@ -66,12 +86,22 @@
 <script>
 const C = SITE_CONTENT;
 
+// Icônes SVG line-art pour les promesses (harmonisées avec Secteurs / Home)
+const SVG_ATTRS = `viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"`;
+const PROMISE_ICONS = {
+  lightbulb: `<svg ${SVG_ATTRS}><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>`,
+  zap: `<svg ${SVG_ATTRS}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+  shield: `<svg ${SVG_ATTRS}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  sprout: `<svg ${SVG_ATTRS}><path d="M7 20h10"/><path d="M12 20V8"/><path d="M12 14a4 4 0 0 0-4-4"/><path d="M12 12a4 4 0 0 1 4-4"/></svg>`,
+  anchor: `<svg ${SVG_ATTRS}><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>`,
+};
+
 // Promise cards (déplacées depuis la home)
 if (C.promesse) {
   document.getElementById('prom-grid').innerHTML = C.promesse.items.map((p,i) =>
     `<div class="promise-card reveal reveal-delay-${(i%4)+1}">
        <div class="promise-head">
-         <div class="promise-icon">${p.icon}</div>
+         <div class="promise-icon">${PROMISE_ICONS[p.icon] || p.icon}</div>
          <h4>${p.titre}</h4>
        </div>
        <p>${p.texte}</p>

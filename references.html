@@ -3,29 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nos missions | OPValue+ – Operating Partners</title>
-<meta name="description" content="Découvrez les missions accomplies par les Operating Partners OPValue+ : +100M€ de valeur générée, 25+ missions, transformations et redressements réussis.">
+<title>Missions | OPValue+ – Operating Partners</title>
+<meta name="description" content="Découvrez les missions accomplies par les Operating Partners OPValue+ : +100M€ de valeur générée, 35 missions, transformations et redressements réussis.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+<!-- SEO : canonical + Open Graph + Twitter Card -->
+<link rel="canonical" href="https://krisquil.github.io/OPValue-V4/references.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OPValue+">
+<meta property="og:title" content="Nos missions | OPValue+ – Operating Partners">
+<meta property="og:description" content="Découvrez les missions accomplies par les Operating Partners OPValue+ : +100M€ de valeur générée, 35 missions, transformations et redressements réussis.">
+<meta property="og:url" content="https://krisquil.github.io/OPValue-V4/references.html">
+<meta property="og:image" content="https://krisquil.github.io/OPValue-V4/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nos missions | OPValue+ – Operating Partners">
+<meta name="twitter:description" content="Découvrez les missions accomplies par les Operating Partners OPValue+ : +100M€ de valeur générée, 35 missions, transformations et redressements réussis.">
+<meta name="twitter:image" content="https://krisquil.github.io/OPValue-V4/images/og-image.jpg">
 </head>
 <body>
 
 <!-- PAGE HEADER -->
 <section class="page-header">
   <div class="page-header-inner">
-    <h1>Références & <em>impacts</em></h1>
+    <h1>Des résultats pour des situations <em>comme la vôtre</em></h1>
   </div>
 </section>
 
 <!-- RESULTS -->
 <section class="results" id="results">
   <div class="results-inner">
-    <h2 class="section-title reveal">Ce que nous avons <em>accompli</em></h2>
+    <h2 class="section-title reveal">L'impact OPValue+ en <em>chiffres</em></h2>
 
     <div class="results-headline reveal reveal-delay-1">
       <div class="big-stat">+100M€</div>
-      <p class="big-stat-sub">de valeur générée, captée, ou sécurisée en 25 missions</p>
+      <p class="big-stat-sub">de valeur générée, captée, ou sécurisée en 35 missions</p>
     </div>
 
     <!-- Result categories -->
@@ -33,7 +54,7 @@
 
     <!-- Case studies -->
     <div class="cases-header">
-      <h3 class="cases-title reveal">Fiches missions détaillées</h3>
+      <h2 class="cases-title reveal">Fiches missions détaillées</h2>
       <div class="cases-filters" id="cases-filters">
         <select id="filter-secteur" class="filter-select">
           <option value="">Tous les secteurs</option>
@@ -135,6 +156,9 @@ function renderCards(data) {
     const probleme  = mission.problematique_initiale || '';
     const actions   = mission.actions || mission.detail || '';  // fallback compat
     const resultat  = mission.resultat || '';
+    const hasResume = !!mission.resume;
+    const resume    = hasResume ? mission.resume : probleme;    // fallback : problématique en tête si pas encore de résumé OCAR
+    const opName    = `${membre.prenom} ${membre.nom}`;
 
     const logoHtml = mission.client_logo
       ? `<img src="${mission.client_logo}" alt="Logo ${client}" class="case-client-logo">`
@@ -142,7 +166,7 @@ function renderCards(data) {
 
     return `<div class="case-card">
       <div class="case-type-row">
-        <div class="case-type-tag">${mission.type || ''}</div>
+        <button type="button" class="case-type-tag" data-filter-type="${mission.type || ''}" title="Filtrer par ${mission.type || ''}">${mission.type || ''}</button>
       </div>
       <div class="case-client-block">
         ${logoHtml}
@@ -152,23 +176,35 @@ function renderCards(data) {
           ${secteur ? `<div class="case-client-secteur">${secteur}</div>` : ''}
         </div>
       </div>
-      <div class="case-body">
-        <div class="case-section-label">Problématique initiale</div>
-        <div class="case-section-text case-text-clamp">${probleme}</div>
+
+      <div class="case-resume">${resume}</div>
+
+      <div class="case-result">
         <div class="case-section-label">Résultat</div>
-        <div class="case-section-text case-text-clamp">${resultat}</div>
-        <div class="case-expand-only">
-          <div class="case-section-label">Actions menées</div>
+        <div class="case-result-text">${resultat}</div>
+      </div>
+
+      <div class="case-detail">
+        ${hasResume ? `
+        <div>
+          <div class="case-section-label">Problématique initiale</div>
+          <div class="case-section-text">${probleme}</div>
+        </div>` : ''}
+        <div>
+          <div class="case-section-label">Plan d'actions</div>
           <div class="case-section-text">${actions}</div>
+        </div>
+        <div class="case-op">
           <div class="case-section-label">Operating Partner</div>
-          <div class="case-section-text">${nameHtml}</div>
+          <button type="button" class="case-op-filter" data-filter-op="${opName}" title="Voir toutes les missions de ${opName}">${nameHtml} <span class="arrow">→</span></button>
         </div>
       </div>
+
       <button class="case-toggle">Voir le détail ▾</button>
     </div>`;
   }).join('');
 
-  // Toggle expand
+  // Toggle expand — révèle Problématique + Plan d'actions + Operating Partner
   document.querySelectorAll('.case-card').forEach(card => {
     const toggle = card.querySelector('.case-toggle');
     if (toggle) {
@@ -208,6 +244,30 @@ function applyFilters() {
   renderCards(filtered);
 }
 
+// Scroll vers le titre "Fiches missions détaillées" — réutilisé init + filtres au clic
+function scrollToCases() {
+  const target = document.querySelector('.cases-title');
+  if (!target) return;
+  const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+  const offsetFromTop = window.innerHeight * 0.40;
+  window.scrollTo({ top: targetTop - offsetFromTop, behavior: 'smooth' });
+}
+
+// Filtres au clic depuis les cartes — tag type ou nom OP
+casesGrid.addEventListener('click', (e) => {
+  const typeBtn = e.target.closest('.case-type-tag[data-filter-type]');
+  const opBtn   = e.target.closest('.case-op-filter[data-filter-op]');
+  if (typeBtn) {
+    document.getElementById('filter-type').value = typeBtn.dataset.filterType;
+    applyFilters();
+    scrollToCases();
+  } else if (opBtn) {
+    document.getElementById('filter-op').value = opBtn.dataset.filterOp;
+    applyFilters();
+    scrollToCases();
+  }
+});
+
 // Init
 if (allCardsData.length) {
   populateFilters();
@@ -228,13 +288,7 @@ if (allCardsData.length) {
   // on positionne le titre "Fiches missions détaillées" autour de 40 % du haut
   // pour laisser voir un peu des catégories de résultats au-dessus + les 1ères missions en dessous.
   if (paramSecteur || paramOp || paramType) {
-    setTimeout(() => {
-      const target = document.querySelector('.cases-title');
-      if (!target) return;
-      const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
-      const offsetFromTop = window.innerHeight * 0.40;
-      window.scrollTo({ top: targetTop - offsetFromTop, behavior: 'smooth' });
-    }, 120);
+    setTimeout(scrollToCases, 120);
   }
 
   document.getElementById('filter-op').addEventListener('change', applyFilters);
