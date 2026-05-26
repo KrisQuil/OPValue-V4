@@ -1,8 +1,8 @@
 # .github/workflows/deploy.yml — OPValue+
-# Déploiement automatique vers OVH depuis la branche `release`
+# Déploiement automatique vers OVH depuis les branches `release` ou `deploy`
 #
-# DÉCLENCHEUR : tout push (ou merge PR) vers la branche `release`
-# CIBLE       : hébergement OVH (mutualisé FTP/SFTP ou VPS SSH)
+# DÉCLENCHEUR : tout push (ou merge PR) vers `release` ou `deploy`
+# CIBLE       : hébergement OVH (mutualisé FTPS ou VPS SSH)
 #
 # ────────────────────────────────────────────────────────
 # PRÉREQUIS — Secrets GitHub à configurer AVANT activation
@@ -27,6 +27,7 @@ on:
   push:
     branches:
       - release
+      - deploy
 
   # Permet un déclenchement manuel depuis l'UI GitHub (Actions → Run workflow)
   workflow_dispatch:
@@ -41,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout branche release
+      - name: Checkout du code
         uses: actions/checkout@v4
 
       - name: Vérification — fichiers sensibles absents
@@ -66,7 +67,7 @@ jobs:
           username: ${{ secrets.OVH_FTP_USER }}
           password: ${{ secrets.OVH_FTP_PASSWORD }}
           port: 21
-          protocol: ftp
+          protocol: ftps
           # Répertoire LOCAL source (racine du repo, sans le .git)
           local-dir: ./
           # Répertoire DISTANT cible sur OVH
