@@ -1,0 +1,126 @@
+# .github/workflows/deploy.yml — OPValue+
+# Déploiement automatique vers OVH depuis la branche `release`
+#
+# DÉCLENCHEUR : tout push (ou merge PR) vers la branche `release`
+# CIBLE       : hébergement OVH (mutualisé FTP/SFTP ou VPS SSH)
+#
+# ────────────────────────────────────────────────────────
+# PRÉREQUIS — Secrets GitHub à configurer AVANT activation
+# (Settings → Secrets and variables → Actions → New secret)
+#
+# Pour OVH mutualisé (FTP) :
+#   OVH_FTP_HOST      ex: ftp.cluster0XX.hosting.ovh.net
+#   OVH_FTP_USER      ex: opvalueplus
+#   OVH_FTP_PASSWORD  mot de passe FTP OVH
+#   OVH_FTP_PATH      répertoire cible sur le serveur, ex: /www/
+#
+# Pour OVH VPS (SSH/rsync) — voir job alternatif en bas :
+#   OVH_SSH_HOST          IP ou hostname du VPS
+#   OVH_SSH_USER          ex: ubuntu
+#   OVH_SSH_PRIVATE_KEY   clé privée SSH (contenu complet avec -----BEGIN...)
+#   OVH_SSH_PATH          répertoire web, ex: /var/www/opvalueplus.com
+# ────────────────────────────────────────────────────────
+
+name: Deploy OPValue+ to OVH
+
+on:
+  push:
+    branches:
+      - release
+
+  # Permet un déclenchement manuel depuis l'UI GitHub (Actions → Run workflow)
+  workflow_dispatch:
+
+jobs:
+  # ──────────────────────────────────────────────────
+  # JOB A : Déploiement FTP vers OVH mutualisé
+  # → Méthode recommandée pour hébergement mutualisé OVH
+  # ──────────────────────────────────────────────────
+  deploy-ftp:
+    name: Deploy via FTP (OVH Mutualisé)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout branche release
+        uses: actions/checkout@v4
+
+      - name: Vérification — fichiers sensibles absents
+        run: |
+          echo "=== Vérification fichiers sensibles ==="
+          # Bloquer si un fichier interne sensible est présent dans le bundle
+          if find . -path './.git' -prune -o \
+             \( -name "CLAUDE.md" -o -path "*/documentation/*" -o -path "*/missions/*" \) \
+             -print | grep -q .; then
+            echo "ERREUR : fichiers internes détectés dans le bundle !"
+            find . -path './.git' -prune -o \
+               \( -name "CLAUDE.md" -o -path "*/documentation/*" -o -path "*/missions/*" \) \
+               -print
+            exit 1
+          fi
+          echo "OK — aucun fichier sensible détecté."
+
+      - name: Déploiement FTP vers OVH
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.OVH_FTP_HOST }}
+          username: ${{ secrets.OVH_FTP_USER }}
+          password: ${{ secrets.OVH_FTP_PASSWORD }}
+          port: 21
+          protocol: ftp
+          # Répertoire LOCAL source (racine du repo, sans le .git)
+          local-dir: ./
+          # Répertoire DISTANT cible sur OVH
+          server-dir: ${{ secrets.OVH_FTP_PATH }}
+          # Fichiers à exclure du déploiement
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/_Ne pas déployer/**
+            **/documentation/**
+            **/missions/**
+            **/*.md
+            **/_config.yml
+            **/Audit_*.docx
+            **/images/_backup*
+
+  # ──────────────────────────────────────────────────
+  # JOB B : Déploiement SSH/rsync vers OVH VPS
+  # → Décommenter ce job et commenter le job A si l'hébergement
+  #   est un VPS OVH avec accès SSH
+  # ──────────────────────────────────────────────────
+  # deploy-ssh:
+  #   name: Deploy via SSH/rsync (OVH VPS)
+  #   runs-on: ubuntu-latest
+  #
+  #   steps:
+  #     - name: Checkout branche release
+  #       uses: actions/checkout@v4
+  #
+  #     - name: Configuration SSH
+  #       run: |
+  #         mkdir -p ~/.ssh
+  #         echo "${{ secrets.OVH_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+  #         chmod 600 ~/.ssh/id_rsa
+  #         ssh-keyscan -H ${{ secrets.OVH_SSH_HOST }} >> ~/.ssh/known_hosts
+  #
+  #     - name: Vérification fichiers sensibles
+  #       run: |
+  #         if find . -path './.git' -prune -o \
+  #            \( -name "CLAUDE.md" -o -path "*/documentation/*" -o -path "*/missions/*" \) \
+  #            -print | grep -q .; then
+  #           echo "ERREUR : fichiers internes détectés !"; exit 1
+  #         fi
+  #
+  #     - name: Déploiement rsync vers VPS OVH
+  #       run: |
+  #         rsync -avz --delete \
+  #           --exclude='.git/' \
+  #           --exclude='.github/' \
+  #           --exclude='_Ne pas déployer/' \
+  #           --exclude='documentation/' \
+  #           --exclude='missions/' \
+  #           --exclude='*.md' \
+  #           --exclude='_config.yml' \
+  #           --exclude='Audit_*.docx' \
+  #           ./ ${{ secrets.OVH_SSH_USER }}@${{ secrets.OVH_SSH_HOST }}:${{ secrets.OVH_SSH_PATH }}/

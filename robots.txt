@@ -1,0 +1,13 @@
+# robots.txt — OPValue+ (opvalueplus.com)
+# Généré le 2026-05-26 — Hugo (DevOps Temia pour Basilic Conseil)
+
+User-agent: *
+Allow: /
+
+# Dossiers internes — ne pas indexer (protection double avec _config.yml)
+Disallow: /_Ne pas déployer/
+Disallow: /documentation/
+Disallow: /missions/
+
+# Sitemap
+Sitemap: https://opvalueplus.com/sitemap.xml
