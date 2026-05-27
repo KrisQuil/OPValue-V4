@@ -1,0 +1,152 @@
+# .github/workflows/deploy.yml — OPValue+
+# Déploiement automatique vers OVH déclenché par push d'un tag `release-v*`
+#
+# DÉCLENCHEUR : push d'un tag matchant `release-v*`
+#               (ex: release-v0.1, release-v1.0.0, release-v2.3.1-hotfix)
+#               Le tag peut pointer sur HEAD ou sur n'importe quel commit antérieur.
+# CIBLE       : hébergement OVH (mutualisé SFTP ou VPS SSH)
+#
+# ────────────────────────────────────────────────────────
+# PRÉREQUIS — Secrets GitHub à configurer AVANT activation
+# (Settings → Secrets and variables → Actions → New secret)
+#
+# Pour OVH mutualisé (SFTP — port 22) :
+#   OVH_FTP_HOST      ex: ftp.cluster0XX.hosting.ovh.net (même host que FTP)
+#   OVH_FTP_USER      ex: opvalueplus
+#   OVH_FTP_PASSWORD  mot de passe FTP/SFTP OVH (identique)
+#   OVH_FTP_PATH      répertoire cible sur le serveur, ex: /www/
+#
+# Pour OVH VPS (SSH/rsync) — voir job alternatif en bas :
+#   OVH_SSH_HOST          IP ou hostname du VPS
+#   OVH_SSH_USER          ex: ubuntu
+#   OVH_SSH_PRIVATE_KEY   clé privée SSH (contenu complet avec -----BEGIN...)
+#   OVH_SSH_PATH          répertoire web, ex: /var/www/opvalueplus.com
+# ────────────────────────────────────────────────────────
+
+name: Deploy OPValue+ to OVH
+
+on:
+  push:
+    tags:
+      - 'release-v*'
+
+  # Permet un déclenchement manuel depuis l'UI GitHub (Actions → Run workflow)
+  # Sélectionne le tag à déployer via le dropdown "Use workflow from"
+  workflow_dispatch:
+
+jobs:
+  # ──────────────────────────────────────────────────
+  # JOB A : Déploiement SFTP vers OVH mutualisé
+  # → Méthode recommandée pour hébergement mutualisé OVH
+  #   (OVH mutualisé ne supporte pas FTPS — on utilise SFTP port 22)
+  # ──────────────────────────────────────────────────
+  deploy-sftp:
+    name: Deploy via SFTP (OVH Mutualisé)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du code (au ref qui a déclenché le workflow)
+        uses: actions/checkout@v4
+
+      - name: Affiche le ref déployé
+        run: |
+          echo "Tag déclencheur : ${GITHUB_REF#refs/tags/}"
+          echo "Commit déployé  : ${GITHUB_SHA}"
+
+      - name: Vérification — fichiers sensibles absents
+        run: |
+          echo "=== Vérification fichiers sensibles ==="
+          # Bloquer si un fichier interne sensible est présent dans le bundle
+          if find . -path './.git' -prune -o \
+             \( -name "CLAUDE.md" -o -path "*/documentation/*" -o -path "*/missions/*" \) \
+             -print | grep -q .; then
+            echo "ERREUR : fichiers internes détectés dans le bundle !"
+            find . -path './.git' -prune -o \
+               \( -name "CLAUDE.md" -o -path "*/documentation/*" -o -path "*/missions/*" \) \
+               -print
+            exit 1
+          fi
+          echo "OK — aucun fichier sensible détecté."
+
+      - name: Préparation du bundle (rsync vers staging propre)
+        run: |
+          mkdir -p /tmp/deploy_bundle
+          rsync -av \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='_Ne pas déployer/' \
+            --exclude='documentation/' \
+            --exclude='missions/' \
+            --exclude='*.md' \
+            --exclude='_config.yml' \
+            --exclude='Audit_*.docx' \
+            --exclude='images/_backup*' \
+            ./ /tmp/deploy_bundle/
+          echo ""
+          echo "=== Contenu du bundle à uploader (racine) ==="
+          ls -la /tmp/deploy_bundle/
+          echo ""
+          echo "=== Détection d'un fichier index ==="
+          ls /tmp/deploy_bundle/index.* 2>/dev/null \
+            || echo "ATTENTION : aucun fichier index.* à la racine du bundle"
+
+      - name: Installation de lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Déploiement SFTP vers OVH (lftp mirror depuis le bundle)
+        env:
+          OVH_HOST: ${{ secrets.OVH_FTP_HOST }}
+          OVH_USER: ${{ secrets.OVH_FTP_USER }}
+          OVH_PASS: ${{ secrets.OVH_FTP_PASSWORD }}
+          OVH_PATH: ${{ secrets.OVH_FTP_PATH }}
+        run: |
+          cd /tmp/deploy_bundle
+          lftp -u "$OVH_USER","$OVH_PASS" sftp://"$OVH_HOST" <<LFTP_EOF
+          set sftp:auto-confirm yes
+          set net:max-retries 3
+          set net:reconnect-interval-base 5
+          set net:timeout 30
+          mirror --reverse --verbose --parallel=4 ./ "$OVH_PATH"
+          bye
+          LFTP_EOF
+
+  # ──────────────────────────────────────────────────
+  # JOB B : Déploiement SSH/rsync vers OVH VPS
+  # → Décommenter ce job et commenter le job A si l'hébergement
+  #   est un VPS OVH avec accès SSH
+  # ──────────────────────────────────────────────────
+  # deploy-ssh:
+  #   name: Deploy via SSH/rsync (OVH VPS)
+  #   runs-on: ubuntu-latest
+  #
+  #   steps:
+  #     - name: Checkout branche release
+  #       uses: actions/checkout@v4
+  #
+  #     - name: Configuration SSH
+  #       run: |
+  #         mkdir -p ~/.ssh
+  #         echo "${{ secrets.OVH_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+  #         chmod 600 ~/.ssh/id_rsa
+  #         ssh-keyscan -H ${{ secrets.OVH_SSH_HOST }} >> ~/.ssh/known_hosts
+  #
+  #     - name: Vérification fichiers sensibles
+  #       run: |
+  #         if find . -path './.git' -prune -o \
+  #            \( -name "CLAUDE.md" -o -path "*/documentation/*" -o -path "*/missions/*" \) \
+  #            -print | grep -q .; then
+  #           echo "ERREUR : fichiers internes détectés !"; exit 1
+  #         fi
+  #
+  #     - name: Déploiement rsync vers VPS OVH
+  #       run: |
+  #         rsync -avz --delete \
+  #           --exclude='.git/' \
+  #           --exclude='.github/' \
+  #           --exclude='_Ne pas déployer/' \
+  #           --exclude='documentation/' \
+  #           --exclude='missions/' \
+  #           --exclude='*.md' \
+  #           --exclude='_config.yml' \
+  #           --exclude='Audit_*.docx' \
+  #           ./ ${{ secrets.OVH_SSH_USER }}@${{ secrets.OVH_SSH_HOST }}:${{ secrets.OVH_SSH_PATH }}/
