@@ -68,32 +68,45 @@ jobs:
           fi
           echo "OK — aucun fichier sensible détecté."
 
+      - name: Préparation du bundle (rsync vers staging propre)
+        run: |
+          mkdir -p /tmp/deploy_bundle
+          rsync -av \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='_Ne pas déployer/' \
+            --exclude='documentation/' \
+            --exclude='missions/' \
+            --exclude='*.md' \
+            --exclude='_config.yml' \
+            --exclude='Audit_*.docx' \
+            --exclude='images/_backup*' \
+            ./ /tmp/deploy_bundle/
+          echo ""
+          echo "=== Contenu du bundle à uploader (racine) ==="
+          ls -la /tmp/deploy_bundle/
+          echo ""
+          echo "=== Détection d'un fichier index ==="
+          ls /tmp/deploy_bundle/index.* 2>/dev/null \
+            || echo "ATTENTION : aucun fichier index.* à la racine du bundle"
+
       - name: Installation de lftp
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 
-      - name: Déploiement SFTP vers OVH (lftp mirror)
+      - name: Déploiement SFTP vers OVH (lftp mirror depuis le bundle)
         env:
           OVH_HOST: ${{ secrets.OVH_FTP_HOST }}
           OVH_USER: ${{ secrets.OVH_FTP_USER }}
           OVH_PASS: ${{ secrets.OVH_FTP_PASSWORD }}
           OVH_PATH: ${{ secrets.OVH_FTP_PATH }}
         run: |
+          cd /tmp/deploy_bundle
           lftp -u "$OVH_USER","$OVH_PASS" sftp://"$OVH_HOST" <<LFTP_EOF
           set sftp:auto-confirm yes
           set net:max-retries 3
           set net:reconnect-interval-base 5
           set net:timeout 30
-          mirror --reverse --verbose --parallel=4 \
-            --exclude-glob '.git*' \
-            --exclude-glob '.github' \
-            --exclude-glob '_Ne pas déployer' \
-            --exclude-glob 'documentation' \
-            --exclude-glob 'missions' \
-            --exclude-glob '*.md' \
-            --exclude-glob '_config.yml' \
-            --exclude-glob 'Audit_*.docx' \
-            --exclude-glob '_backup*' \
-            ./ "$OVH_PATH"
+          mirror --reverse --verbose --parallel=4 ./ "$OVH_PATH"
           bye
           LFTP_EOF
 
