@@ -1,0 +1,40 @@
+# .gitattributes — Normalisation des fins de ligne
+# Évite les diffs CRLF/LF parasites quand un fichier est touché sur Windows
+# Référence : https://git-scm.com/docs/gitattributes
+
+# Par défaut, tout fichier texte est normalisé en LF dans le repo
+* text=auto eol=lf
+
+# Fichiers texte explicites (LF dans le repo et dans le working dir)
+*.html  text eol=lf
+*.css   text eol=lf
+*.js    text eol=lf
+*.md    text eol=lf
+*.xml   text eol=lf
+*.txt   text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.json  text eol=lf
+*.svg   text eol=lf
+
+# Fichiers sans extension à la racine
+.htaccess     text eol=lf
+.gitignore    text eol=lf
+.gitattributes text eol=lf
+
+# Fichiers binaires (ne jamais convertir)
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.ico   binary
+*.pdf   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.docx  binary
+*.xlsx  binary
+*.pptx  binary
+*.zip   binary
