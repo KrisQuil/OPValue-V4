@@ -1,7 +1,9 @@
 # .github/workflows/deploy.yml — OPValue+
-# Déploiement automatique vers OVH depuis les branches `release` ou `deploy`
+# Déploiement automatique vers OVH déclenché par push d'un tag `release-v*`
 #
-# DÉCLENCHEUR : tout push (ou merge PR) vers `release` ou `deploy`
+# DÉCLENCHEUR : push d'un tag matchant `release-v*`
+#               (ex: release-v0.1, release-v1.0.0, release-v2.3.1-hotfix)
+#               Le tag peut pointer sur HEAD ou sur n'importe quel commit antérieur.
 # CIBLE       : hébergement OVH (mutualisé FTPS ou VPS SSH)
 #
 # ────────────────────────────────────────────────────────
@@ -25,11 +27,11 @@ name: Deploy OPValue+ to OVH
 
 on:
   push:
-    branches:
-      - release
-      - deploy
+    tags:
+      - 'release-v*'
 
   # Permet un déclenchement manuel depuis l'UI GitHub (Actions → Run workflow)
+  # Sélectionne le tag à déployer via le dropdown "Use workflow from"
   workflow_dispatch:
 
 jobs:
@@ -42,8 +44,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout du code
+      - name: Checkout du code (au ref qui a déclenché le workflow)
         uses: actions/checkout@v4
+
+      - name: Affiche le ref déployé
+        run: |
+          echo "Tag déclencheur : ${GITHUB_REF#refs/tags/}"
+          echo "Commit déployé  : ${GITHUB_SHA}"
 
       - name: Vérification — fichiers sensibles absents
         run: |
