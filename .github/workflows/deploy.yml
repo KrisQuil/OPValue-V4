@@ -4,16 +4,16 @@
 # DÉCLENCHEUR : push d'un tag matchant `release-v*`
 #               (ex: release-v0.1, release-v1.0.0, release-v2.3.1-hotfix)
 #               Le tag peut pointer sur HEAD ou sur n'importe quel commit antérieur.
-# CIBLE       : hébergement OVH (mutualisé FTPS ou VPS SSH)
+# CIBLE       : hébergement OVH (mutualisé SFTP ou VPS SSH)
 #
 # ────────────────────────────────────────────────────────
 # PRÉREQUIS — Secrets GitHub à configurer AVANT activation
 # (Settings → Secrets and variables → Actions → New secret)
 #
-# Pour OVH mutualisé (FTP) :
-#   OVH_FTP_HOST      ex: ftp.cluster0XX.hosting.ovh.net
+# Pour OVH mutualisé (SFTP — port 22) :
+#   OVH_FTP_HOST      ex: ftp.cluster0XX.hosting.ovh.net (même host que FTP)
 #   OVH_FTP_USER      ex: opvalueplus
-#   OVH_FTP_PASSWORD  mot de passe FTP OVH
+#   OVH_FTP_PASSWORD  mot de passe FTP/SFTP OVH (identique)
 #   OVH_FTP_PATH      répertoire cible sur le serveur, ex: /www/
 #
 # Pour OVH VPS (SSH/rsync) — voir job alternatif en bas :
@@ -36,11 +36,12 @@ on:
 
 jobs:
   # ──────────────────────────────────────────────────
-  # JOB A : Déploiement FTP vers OVH mutualisé
+  # JOB A : Déploiement SFTP vers OVH mutualisé
   # → Méthode recommandée pour hébergement mutualisé OVH
+  #   (OVH mutualisé ne supporte pas FTPS — on utilise SFTP port 22)
   # ──────────────────────────────────────────────────
-  deploy-ftp:
-    name: Deploy via FTP (OVH Mutualisé)
+  deploy-sftp:
+    name: Deploy via SFTP (OVH Mutualisé)
     runs-on: ubuntu-latest
 
     steps:
@@ -67,30 +68,34 @@ jobs:
           fi
           echo "OK — aucun fichier sensible détecté."
 
-      - name: Déploiement FTP vers OVH
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.OVH_FTP_HOST }}
-          username: ${{ secrets.OVH_FTP_USER }}
-          password: ${{ secrets.OVH_FTP_PASSWORD }}
-          port: 21
-          protocol: ftps
-          # Répertoire LOCAL source (racine du repo, sans le .git)
-          local-dir: ./
-          # Répertoire DISTANT cible sur OVH
-          server-dir: ${{ secrets.OVH_FTP_PATH }}
-          # Fichiers à exclure du déploiement
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github/**
-            **/_Ne pas déployer/**
-            **/documentation/**
-            **/missions/**
-            **/*.md
-            **/_config.yml
-            **/Audit_*.docx
-            **/images/_backup*
+      - name: Installation de lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Déploiement SFTP vers OVH (lftp mirror)
+        env:
+          OVH_HOST: ${{ secrets.OVH_FTP_HOST }}
+          OVH_USER: ${{ secrets.OVH_FTP_USER }}
+          OVH_PASS: ${{ secrets.OVH_FTP_PASSWORD }}
+          OVH_PATH: ${{ secrets.OVH_FTP_PATH }}
+        run: |
+          lftp -u "$OVH_USER","$OVH_PASS" sftp://"$OVH_HOST" <<LFTP_EOF
+          set sftp:auto-confirm yes
+          set net:max-retries 3
+          set net:reconnect-interval-base 5
+          set net:timeout 30
+          mirror --reverse --verbose --parallel=4 \
+            --exclude-glob '.git*' \
+            --exclude-glob '.github' \
+            --exclude-glob '_Ne pas déployer' \
+            --exclude-glob 'documentation' \
+            --exclude-glob 'missions' \
+            --exclude-glob '*.md' \
+            --exclude-glob '_config.yml' \
+            --exclude-glob 'Audit_*.docx' \
+            --exclude-glob '_backup*' \
+            ./ "$OVH_PATH"
+          bye
+          LFTP_EOF
 
   # ──────────────────────────────────────────────────
   # JOB B : Déploiement SSH/rsync vers OVH VPS
