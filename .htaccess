@@ -106,10 +106,10 @@ upgrade-insecure-requests;"
     Deny from all
 </FilesMatch>
 
-# Bloquer l'accès aux dossiers internes si présents par erreur
-<IfModule mod_rewrite.c>
-    RewriteRule ^(_Ne pas déployer|documentation|missions)/ - [F,L]
-</IfModule>
+# Note : la protection contre les dossiers internes (_Ne pas déployer/,
+# documentation/, missions/) est faite en amont par rsync au moment
+# du build dans le workflow GitHub Actions — ces dossiers n'arrivent
+# pas sur OVH.
 
 # ─────────────────────────────────────────────
 # 6. Page d'erreur personnalisée (optionnel)
