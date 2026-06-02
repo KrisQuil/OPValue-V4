@@ -19,8 +19,8 @@
   --serif:'Cormorant Garamond',Georgia,serif;
   --sans:'Outfit',system-ui,sans-serif;
 }
-html{scroll-behavior:smooth;font-size:18px}
-body{font-family:var(--sans);color:var(--text);background:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;font-size:18px;overflow-x:hidden}
+body{font-family:var(--sans);color:var(--text);background:var(--cream);overflow-x:hidden;max-width:100%;-webkit-font-smoothing:antialiased}
 
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
@@ -392,14 +392,14 @@ footer{background:var(--logo-bg);padding:3rem;border-top:1px solid rgba(255,255,
 .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
 .footer-brand a{display:inline-block;line-height:0}
 .footer-logo{height:36px;width:auto;display:block}
-.footer-links{display:flex;gap:2rem}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem 1.5rem}
 .footer-links a{color:rgba(255,255,255,.4);text-decoration:none;font-size:.82rem;transition:color .3s}
 .footer-links a:hover{color:var(--orange)}
 .footer-copy{color:rgba(255,255,255,.25);font-size:.75rem;width:100%;text-align:center;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06)}
 
 /* RESPONSIVE */
 /* Palier laptop intermédiaire — nav compact pour éviter wrap des labels */
-@media(min-width:769px) and (max-width:1199px){
+@media(min-width:1025px) and (max-width:1199px){
   nav{padding:1rem 1.75rem}
   nav.scrolled{padding:.7rem 1.75rem}
   .nav-links{gap:1.5rem;margin-left:1.75rem}
@@ -407,6 +407,13 @@ footer{background:var(--logo-bg);padding:3rem;border-top:1px solid rgba(255,255,
   .nav-cta{padding:.4rem .85rem;font-size:.78rem}
 }
 @media(max-width:1024px){
+  /* Bascule burger dès 1024px : couvre tablettes, foldables (Z Flip ~830px),
+     split-screen et petits laptops où 6 liens + CTA débordaient. */
+  nav{padding:1rem 1.5rem}
+  nav.scrolled{padding:.75rem 1.5rem}
+  .nav-links{display:none;position:fixed;inset:0;background:var(--navy);flex-direction:column;justify-content:center;align-items:center;gap:2rem;z-index:999}
+  .nav-links.open{display:flex}
+  .nav-burger{display:flex}
   .solution-cards{grid-template-columns:repeat(2,1fr)}
   .results-grid,.collectif-grid{grid-template-columns:1fr}
   .enjeux-inner,.op-def-inner,.collectif-top{grid-template-columns:1fr}
@@ -416,11 +423,6 @@ footer{background:var(--logo-bg);padding:3rem;border-top:1px solid rgba(255,255,
   .sit-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:768px){
-  nav{padding:1rem 1.5rem}
-  nav.scrolled{padding:.75rem 1.5rem}
-  .nav-links{display:none;position:fixed;inset:0;background:var(--navy);flex-direction:column;justify-content:center;align-items:center;gap:2rem;z-index:999}
-  .nav-links.open{display:flex}
-  .nav-burger{display:flex}
   .hero-content{padding:5.5rem 1.5rem 3rem}
   .hero-stats{gap:2rem}
   .hero-stat h3{font-size:2rem}
@@ -469,6 +471,21 @@ footer{background:var(--logo-bg);padding:3rem;border-top:1px solid rgba(255,255,
   .scenario-row{grid-template-columns:1fr;gap:.75rem;padding:1.5rem 0}
   .scenario-row:hover{padding-left:1rem;padding-right:1rem}
   .scenario-arrow{justify-self:end;text-align:right}
+}
+
+/* Très petits viewports — foldables (Z Flip cover ~344px), petits Android.
+   Réduit nav padding pour garantir burger dans le viewport, et empile le
+   footer en colonne pour éviter overflow des liens. */
+@media(max-width:480px){
+  nav{padding:.85rem 1rem}
+  nav.scrolled{padding:.65rem 1rem}
+  .nav-logo img{height:36px}
+  nav.scrolled .nav-logo img{height:32px}
+
+  footer{padding:2.5rem 1rem 2rem}
+  .footer-inner{flex-direction:column;align-items:center;text-align:center;gap:1.25rem}
+  .footer-links{justify-content:center;max-width:100%;gap:.5rem 1.25rem;font-size:.8rem}
+  .footer-copy{font-size:.7rem;width:auto;max-width:100%;margin-top:1rem;padding-top:1rem}
 }
 
 /* BRIDGE — bandeau navy plein largeur entre la grille et le cta-banner */
@@ -535,4 +552,8 @@ footer{background:var(--logo-bg);padding:3rem;border-top:1px solid rgba(255,255,
   .cta-banner-inner{flex-direction:column;gap:1.5rem}
   .cta-divider{width:40px;height:1px}
   .page-header{padding:5rem 1.5rem 1.25rem}
+  /* Footer mobile : les 7 liens débordaient à droite et body{overflow-x:hidden}
+     empêchait le scroll horizontal. Wrap centré pour que tout soit cliquable. */
+  .footer-inner{flex-direction:column;text-align:center;gap:1.25rem}
+  .footer-links{flex-wrap:wrap;justify-content:center;gap:.75rem 1.25rem}
 }
