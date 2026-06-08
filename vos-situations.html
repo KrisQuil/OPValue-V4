@@ -85,13 +85,13 @@ if (C.situations_scenarios) {
   document.getElementById('situations-intro').textContent = S.intro;
 
   // Regroupement par type, ordre fixe :
-  // Transformations & redressements > Croissance & création de valeur > Transmissions et Reprises
+  // Transformation & redressement > Croissance & création de valeur > Transmission & reprise
   const groups = {};
   S.cartes.forEach(c => {
     if (!groups[c.type]) groups[c.type] = [];
     groups[c.type].push(c);
   });
-  const orderedTypes = ['Transformations & redressements', 'Croissance & création de valeur', 'Transmissions et Reprises'];
+  const orderedTypes = ['Transformation & redressement', 'Croissance & création de valeur', 'Transmission & reprise'];
   let rowCounter = 0;
   document.getElementById('scenarios-grid').innerHTML = orderedTypes
     .filter(type => groups[type] && groups[type].length > 0)

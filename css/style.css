@@ -197,7 +197,7 @@ th.hl{background:rgba(235,100,12,.1) !important}
 .quote-content cite{display:block;margin-top:1.5rem;font-size:.85rem;color:rgba(255,255,255,.5);font-style:normal;font-family:var(--sans)}
 
 /* COLLECTIF */
-.collectif{padding:3.5rem 3rem 3rem;background:var(--white)}
+.collectif{padding:3.5rem 3rem 2.1rem;background:var(--white)}
 .collectif-inner{max-width:1200px;margin:0 auto}
 .collectif-top{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-bottom:3rem}
 .collectif-intro{}
@@ -321,12 +321,12 @@ th.hl{background:rgba(235,100,12,.1) !important}
 .case-toggle:hover{color:var(--orange-light)}
 
 /* TEAM */
-.team{padding:3.5rem 3rem 7rem;background:var(--white)}
+.team{padding:2.45rem 3rem 7rem;background:var(--white)}
 .team-inner{max-width:1200px;margin:0 auto}
 .team-desc{font-size:1rem;color:var(--text-light);line-height:1.8;max-width:680px;margin-top:2rem}
 .team-badges{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}
 .team-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.2rem;border-radius:50px;border:1px solid var(--border);font-size:.78rem;color:var(--navy);font-weight:500;background:var(--cream)}
-.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-top:4rem}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;margin-top:2.8rem}
 .member{background:var(--cream);border-radius:10px;padding:2rem;border:1px solid var(--border);transition:all .4s;scroll-margin-top:6rem}
 .member:hover{border-color:var(--orange);transform:translateY(-4px);box-shadow:0 15px 40px rgba(0,0,0,.05)}
 .member-top{display:flex;align-items:center;gap:1.25rem;margin-bottom:1rem}

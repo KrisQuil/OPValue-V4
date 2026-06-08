@@ -262,7 +262,7 @@ const SITE_CONTENT = {
     subtitle: "+ 100 M€ de valeur générée, captée, ou sécurisée en {n} missions",
     categories: [
       {
-        titre: "Transformations & redressements",
+        titre: "Transformation & redressement",
         items: [
           "14 entreprises remises sur une trajectoire viable",
           "Retour à l'équilibre en 12–18 mois",
@@ -279,7 +279,7 @@ const SITE_CONTENT = {
         ],
       },
       {
-        titre: "Transmissions et Reprises",
+        titre: "Transmission & reprise",
         items: [
           "3 opérations de cession, 5 opérations d'acquisition",
           "Optimisation des prix de transaction (entre +25% et +50%) et des GAP",
@@ -297,8 +297,8 @@ const SITE_CONTENT = {
   //
   // Pour ajouter / modifier un scénario :
   //   - Copier un objet { type, signal, demande, leviers, ... }
-  //   - Le champ "type" doit valoir : "Transformations & redressements",
-  //     "Croissance & création de valeur" ou "Transmissions et Reprises"
+  //   - Le champ "type" doit valoir : "Transformation & redressement",
+  //     "Croissance & création de valeur" ou "Transmission & reprise"
   //     (sert de libellé de groupe ET d'ordre d'affichage dans vos-situations.html)
   // ──────────────────────────────────────────────
   situations_scenarios: {
@@ -306,7 +306,7 @@ const SITE_CONTENT = {
     intro: "Ce qui vous amène, dirigeants et fonds d'investissement, à nous contacter, ce ne sont pas des concepts. Ce sont des signaux concrets. Voici les plus fréquents, et ce que nous y apportons.",
     cartes: [
       {
-        type:    "Transformations & redressements",
+        type:    "Transformation & redressement",
         theme:   "Résilience & Retournement",
         signal:  "Mon EBITDA décroche depuis 3 trimestres",
         demande: "Stopper l'hémorragie et reprendre la trajectoire",
@@ -318,7 +318,7 @@ const SITE_CONTENT = {
         demande: "Structurer l'organisation pour absorber la croissance",
       },
       {
-        type:    "Transmissions et Reprises",
+        type:    "Transmission & reprise",
         theme:   "Transmission & Cession",
         signal:  "Le fondateur veut céder dans 18 mois, il faut valoriser",
         demande: "Préparer la valorisation et le processus de cession",
@@ -330,19 +330,19 @@ const SITE_CONTENT = {
         demande: "Établir la confiance, co-piloter avec le dirigeant et tenir le plan de création de valeur",
       },
       {
-        type:    "Transmissions et Reprises",
+        type:    "Transmission & reprise",
         theme:   "Finance & Pilotage",
         signal:  "On veut racheter une boîte, le management actuel doute de l'intégration",
         demande: "Sécuriser la cible et l'intégration post-deal",
       },
       {
-        type:    "Transformations & redressements",
+        type:    "Transformation & redressement",
         theme:   "Stratégie & Modèle économique",
         signal:  "Notre business model s'essouffle, il faut pivoter",
         demande: "Repenser le modèle et exécuter la bascule",
       },
       {
-        type:    "Transformations & redressements",
+        type:    "Transformation & redressement",
         theme:   "Leadership & Organisation",
         signal:  "L'équipe dirigeante est fatiguée, le cap se brouille",
         demande: "Remettre du leadership et de la lucidité au sommet",
