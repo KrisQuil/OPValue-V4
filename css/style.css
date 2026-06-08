@@ -197,7 +197,7 @@ th.hl{background:rgba(235,100,12,.1) !important}
 .quote-content cite{display:block;margin-top:1.5rem;font-size:.85rem;color:rgba(255,255,255,.5);font-style:normal;font-family:var(--sans)}
 
 /* COLLECTIF */
-.collectif{padding:3.5rem 3rem 6rem;background:var(--white)}
+.collectif{padding:3.5rem 3rem 3rem;background:var(--white)}
 .collectif-inner{max-width:1200px;margin:0 auto}
 .collectif-top{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-bottom:3rem}
 .collectif-intro{}
@@ -321,7 +321,7 @@ th.hl{background:rgba(235,100,12,.1) !important}
 .case-toggle:hover{color:var(--orange-light)}
 
 /* TEAM */
-.team{padding:7rem 3rem;background:var(--white)}
+.team{padding:3.5rem 3rem 7rem;background:var(--white)}
 .team-inner{max-width:1200px;margin:0 auto}
 .team-desc{font-size:1rem;color:var(--text-light);line-height:1.8;max-width:680px;margin-top:2rem}
 .team-badges{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}
@@ -386,6 +386,7 @@ th.hl{background:rgba(235,100,12,.1) !important}
 .legal-table td{padding:.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-light)}
 .legal-table tr:last-child td{border-bottom:none}
 .legal-update{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.82rem;color:var(--text-light)}
+.legal-version{margin-top:.25rem;font-size:.82rem;color:var(--text-light)}
 
 /* FOOTER */
 footer{background:var(--logo-bg);padding:3rem;border-top:1px solid rgba(255,255,255,.06)}

@@ -6,6 +6,12 @@
 #               Le tag peut pointer sur HEAD ou sur n'importe quel commit antérieur.
 # CIBLE       : hébergement OVH (mutualisé SFTP ou VPS SSH)
 #
+# VERSIONNAGE — tag `release-vX.Y.Z` (la version X.Y.Z est injectée dans
+#               mentions-legales.html au déploiement, voir l'étape dédiée) :
+#   X = changement de structure MAJEUR
+#   Y = changement de structure MINEUR (au sein des pages)
+#   Z = texte, optimisation graphique ou correctif technique mineur
+#
 # ────────────────────────────────────────────────────────
 # PRÉREQUIS — Secrets GitHub à configurer AVANT activation
 # (Settings → Secrets and variables → Actions → New secret)
@@ -89,6 +95,27 @@ jobs:
           echo "=== Détection d'un fichier index ==="
           ls /tmp/deploy_bundle/index.* 2>/dev/null \
             || echo "ATTENTION : aucun fichier index.* à la racine du bundle"
+
+      - name: Injection du numéro de version (depuis le tag release-v*)
+        run: |
+          REF="${GITHUB_REF#refs/tags/}"
+          case "$REF" in
+            release-v*) VERSION="${REF#release-v}" ;;
+            *)
+              # Déclenchement manuel ou ref non-tag : dernier tag release-v* atteignable
+              TAG=$(git describe --tags --abbrev=0 --match 'release-v*' 2>/dev/null || true)
+              VERSION="${TAG#release-v}"
+              ;;
+          esac
+          if [ -z "$VERSION" ]; then
+            echo "ATTENTION : aucune version dérivée du tag — valeur par défaut du fichier conservée."
+          else
+            echo "Version déployée : $VERSION"
+            sed -i -E "s|(<strong data-site-version>)[^<]*(</strong>)|\1${VERSION}\2|" \
+              /tmp/deploy_bundle/mentions-legales.html
+            echo "=== Contrôle ==="
+            grep -o '<strong data-site-version>[^<]*</strong>' /tmp/deploy_bundle/mentions-legales.html || true
+          fi
 
       - name: Installation de lftp
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp

@@ -178,7 +178,7 @@ const SITE_CONTENT = {
       },
       {
         titre: "Notre écosystème",
-        texte: "Avec nous, un réseau d'experts spécialisés renforce et complète nos interventions selon vos besoins.",
+        texte: "Avec nous, un réseau d'experts spécialisés (Avocats, Banque d'affaires, Experts comptables,… ) renforce et complète nos interventions selon vos besoins.",
       },
     ],
   },
@@ -275,13 +275,13 @@ const SITE_CONTENT = {
           "EBITDA : de –50k€ à +150k€/mois",
           "Passage de 6 à 24 M€ de chiffre d'affaires en 3 ans",
           "Revenus x2 et valorisation x3 dans des projets IA / data",
+          "50 M€ levés sur 2 levées de fonds",
         ],
       },
       {
-        titre: "Financement & M&A",
+        titre: "Transmissions et Reprises",
         items: [
-          "50 M€ levés",
-          "3 opérations de cession, 5 opérations d'acquisition, 2 levées de fonds",
+          "3 opérations de cession, 5 opérations d'acquisition",
           "Optimisation des prix de transaction (entre +25% et +50%) et des GAP",
         ],
       },
@@ -297,51 +297,52 @@ const SITE_CONTENT = {
   //
   // Pour ajouter / modifier un scénario :
   //   - Copier un objet { type, signal, demande, leviers, ... }
-  //   - Le champ "type" doit valoir : "Transformation", "Croissance" ou "M&A"
-  //     (utilisé pour la couleur du tag ET pour le filtre URL vers Nos missions)
+  //   - Le champ "type" doit valoir : "Transformations & redressements",
+  //     "Croissance & création de valeur" ou "Transmissions et Reprises"
+  //     (sert de libellé de groupe ET d'ordre d'affichage dans vos-situations.html)
   // ──────────────────────────────────────────────
   situations_scenarios: {
     title: "Vous reconnaissez votre situation ?",
     intro: "Ce qui vous amène, dirigeants et fonds d'investissement, à nous contacter, ce ne sont pas des concepts. Ce sont des signaux concrets. Voici les plus fréquents, et ce que nous y apportons.",
     cartes: [
       {
-        type:    "Transformation",
+        type:    "Transformations & redressements",
         theme:   "Résilience & Retournement",
         signal:  "Mon EBITDA décroche depuis 3 trimestres",
         demande: "Stopper l'hémorragie et reprendre la trajectoire",
       },
       {
-        type:    "Croissance",
+        type:    "Croissance & création de valeur",
         theme:   "Croissance & Scalabilité",
         signal:  "On passe de 6 à 25 M€ en 3 ans, on craque",
         demande: "Structurer l'organisation pour absorber la croissance",
       },
       {
-        type:    "M&A",
+        type:    "Transmissions et Reprises",
         theme:   "Transmission & Cession",
         signal:  "Le fondateur veut céder dans 18 mois, il faut valoriser",
         demande: "Préparer la valorisation et le processus de cession",
       },
       {
-        type:    "Croissance",
+        type:    "Croissance & création de valeur",
         theme:   "Gouvernance & Actionnariat",
         signal:  "Un fonds vient d'entrer au capital, ils demandent un Operating Partner",
         demande: "Établir la confiance, co-piloter avec le dirigeant et tenir le plan de création de valeur",
       },
       {
-        type:    "M&A",
+        type:    "Transmissions et Reprises",
         theme:   "Finance & Pilotage",
         signal:  "On veut racheter une boîte, le management actuel doute de l'intégration",
         demande: "Sécuriser la cible et l'intégration post-deal",
       },
       {
-        type:    "Transformation",
+        type:    "Transformations & redressements",
         theme:   "Stratégie & Modèle économique",
         signal:  "Notre business model s'essouffle, il faut pivoter",
         demande: "Repenser le modèle et exécuter la bascule",
       },
       {
-        type:    "Transformation",
+        type:    "Transformations & redressements",
         theme:   "Leadership & Organisation",
         signal:  "L'équipe dirigeante est fatiguée, le cap se brouille",
         demande: "Remettre du leadership et de la lucidité au sommet",
@@ -358,7 +359,7 @@ const SITE_CONTENT = {
   // SECTION ÉQUIPE (membres du collectif)
   // ──────────────────────────────────────────────
   equipe: {
-    title:    "Tous nos operating partners",
+    title:    "Nos operating partners",
     membres: [],
   },
 

@@ -84,13 +84,14 @@ if (C.situations_scenarios) {
   // Intro
   document.getElementById('situations-intro').textContent = S.intro;
 
-  // Regroupement par type, ordre fixe : Transformation > Croissance > M&A
+  // Regroupement par type, ordre fixe :
+  // Transformations & redressements > Croissance & création de valeur > Transmissions et Reprises
   const groups = {};
   S.cartes.forEach(c => {
     if (!groups[c.type]) groups[c.type] = [];
     groups[c.type].push(c);
   });
-  const orderedTypes = ['Transformation', 'Croissance', 'M&A'];
+  const orderedTypes = ['Transformations & redressements', 'Croissance & création de valeur', 'Transmissions et Reprises'];
   let rowCounter = 0;
   document.getElementById('scenarios-grid').innerHTML = orderedTypes
     .filter(type => groups[type] && groups[type].length > 0)
