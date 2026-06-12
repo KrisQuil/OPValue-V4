@@ -487,6 +487,8 @@ footer{background:var(--logo-bg);padding:3rem;border-top:1px solid rgba(255,255,
   .footer-inner{flex-direction:column;align-items:center;text-align:center;gap:1.25rem}
   .footer-links{justify-content:center;max-width:100%;gap:.5rem 1.25rem;font-size:.8rem}
   .footer-copy{font-size:.7rem;width:auto;max-width:100%;margin-top:1rem;padding-top:1rem}
+
+  .team-grid{grid-template-columns:1fr}
 }
 
 /* BRIDGE — bandeau navy plein largeur entre la grille et le cta-banner */

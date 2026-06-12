@@ -436,7 +436,7 @@ const SITE_CONTENT = {
   contact: {
     title:    "Et contactez-le !",
     subtitle: "Premiers échanges : 2 × 1h pour comprendre vos enjeux. C'est rapide et c'est gratuit.",
-    email_general: "contact@opvalueplus.com",
+    email_general: "christophe.quille@opvalueplus.com",
   },
 
 };
