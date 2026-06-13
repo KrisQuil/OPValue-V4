@@ -38,6 +38,50 @@
 <meta name="twitter:title" content="Notre approche | OPValue+ – Operating Partners">
 <meta name="twitter:description" content="La solution OPValue+ en 4 étapes : premier échange gratuit, Diag Flash, OBR/IBR, puis accompagnement à l'exécution.">
 <meta name="twitter:image" content="https://opvalueplus.com/images/og-image.jpg">
+
+<!-- Données structurées : service et démarche OPValue+ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Operating Partner / accompagnement opérationnel",
+  "provider": { "@type": "Organization", "name": "OPValue+", "url": "https://opvalueplus.com" },
+  "areaServed": { "@type": "Country", "name": "France" },
+  "description": "Premier échange gratuit, Diag Flash, OBR/IBR, puis accompagnement à l’exécution.",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Démarche OPValue+",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Premier échange" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diag Flash" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "OBR / IBR" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Accompagnement à l’exécution" } }
+    ]
+  }
+}
+</script>
+
+<!-- Données structurées : fil d’Ariane -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Accueil",
+      "item": "https://opvalueplus.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Approche",
+      "item": "https://opvalueplus.com/offre.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -138,26 +182,4 @@ if (C.solution) {
 
 // Situations from SITE_CONTENT
 if (C.situations) {
-  const descriptions = {
-    "Gouvernance & Actionnariat": "Aligner les intérêts, structurer la gouvernance",
-    "Stratégie & Modèle économique": "Clarifier la vision, pivoter le modèle",
-    "Croissance & Scalabilité": "Passer à l'échelle, structurer les opérations",
-    "International & Partenariat": "Développement international, alliances stratégiques",
-    "Innovation & Digitalisation": "IA, transformation digitale",
-    "Résilience & Retournement": "Gestion de crise, restructuration",
-    "Leadership & Organisation": "Renforcer le management, mobiliser les équipes",
-    "Finance & Pilotage": "Levées de fonds, M&A",
-    "Transmission & Cession": "Préparation à la cession, valorisation",
-  };
-  document.getElementById('situations-grid').innerHTML = C.situations.items.map((item, i) =>
-    `<div class="sit-item reveal reveal-delay-${(i%4)+1}">
-       <h5>${item}</h5>
-       <p>${descriptions[item] || ''}</p>
-     </div>`
-  ).join('');
-}
-
-COMPONENTS.init('offre');
-</script>
-</body>
-</html>
+  const descriptio

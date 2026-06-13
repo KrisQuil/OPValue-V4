@@ -38,6 +38,28 @@
 <meta name="twitter:title" content="Mentions légales | OPValue+">
 <meta name="twitter:description" content="OPValue+ — Operating Partners pour dirigeants et investisseurs.">
 <meta name="twitter:image" content="https://opvalueplus.com/images/og-image.jpg">
+
+<!-- Données structurées : fil d’Ariane -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Accueil",
+      "item": "https://opvalueplus.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Mentions légales",
+      "item": "https://opvalueplus.com/mentions-legales.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -104,15 +126,12 @@
       Les présentes mentions légales sont soumises au droit français. En cas de litige, les tribunaux français seront seuls compétents.
     </p>
 
-    <p class="legal-update">Dernière mise à jour : <strong>25 mai 2026</strong></p>
+    <!-- Date réécrite à la date du déploiement (voir deploy.yml). Valeur en dur = fallback preview. -->
+    <p class="legal-update">Dernière mise à jour : <strong data-site-updated>25 mai 2026</strong></p>
     <!-- Version X.Y.Z — X: changement de structure majeur · Y: changement de structure mineur (au sein des pages) · Z: texte, optimisation graphique ou correctif technique mineur. Valeur en dur = fallback preview ; en prod elle est réécrite depuis le tag release-vX.Y.Z. -->
     <p class="legal-version">Version <strong data-site-version>0.1.5</strong></p>
 
   </div>
 </section>
 
-<script src="js/site-content.js"></script>
-<script src="js/components.js"></script>
-<script>COMPONENTS.init('mentions');</script>
-</body>
-</html>
+<script src="js/sit

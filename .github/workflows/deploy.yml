@@ -117,6 +117,28 @@ jobs:
             grep -o '<strong data-site-version>[^<]*</strong>' /tmp/deploy_bundle/mentions-legales.html || true
           fi
 
+      - name: Injection de la date de mise à jour (date du déploiement)
+        run: |
+          MOIS=(janvier février mars avril mai juin juillet août septembre octobre novembre décembre)
+          J=$(TZ="Europe/Paris" date +%-d)
+          M=$(TZ="Europe/Paris" date +%-m)
+          A=$(TZ="Europe/Paris" date +%Y)
+          DATE_FR="$J ${MOIS[$((M-1))]} $A"
+          echo "Date de déploiement : $DATE_FR"
+          sed -i -E "s|(<strong data-site-updated>)[^<]*(</strong>)|\1${DATE_FR}\2|" \
+            /tmp/deploy_bundle/mentions-legales.html
+          echo "=== Contrôle ==="
+          grep -o '<strong data-site-updated>[^<]*</strong>' /tmp/deploy_bundle/mentions-legales.html || true
+
+      - name: Mise à jour des dates du sitemap (date du déploiement)
+        run: |
+          TODAY=$(TZ="Europe/Paris" date +%F)
+          echo "Sitemap lastmod -> $TODAY"
+          sed -i -E "s|<lastmod>[^<]*</lastmod>|<lastmod>${TODAY}</lastmod>|g" \
+            /tmp/deploy_bundle/sitemap.xml
+          echo "=== Contrôle ==="
+          grep -c "<lastmod>${TODAY}</lastmod>" /tmp/deploy_bundle/sitemap.xml || true
+
       - name: Installation de lftp
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 

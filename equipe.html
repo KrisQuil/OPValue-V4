@@ -38,6 +38,41 @@
 <meta name="twitter:title" content="L'équipe | OPValue+ – Operating Partners">
 <meta name="twitter:description" content="Découvrez nos Operating Partners : des dirigeants expérimentés et complémentaires, formés au programme CAPOP.">
 <meta name="twitter:image" content="https://opvalueplus.com/images/og-image.jpg">
+
+<!-- Données structurées : profils des Operating Partners -->
+<script type="application/ld+json">
+[
+  { "@context": "https://schema.org", "@type": "Person", "name": "Christophe Quille", "jobTitle": "Operating Partner", "worksFor": { "@type": "Organization", "name": "OPValue+" }, "url": "https://opvalueplus.com/equipe.html", "sameAs": "https://www.linkedin.com/in/christophe-quille-55866a104/" },
+  { "@context": "https://schema.org", "@type": "Person", "name": "Bertrand Le Conte de Poly", "jobTitle": "Operating Partner", "worksFor": { "@type": "Organization", "name": "OPValue+" }, "url": "https://opvalueplus.com/equipe.html", "sameAs": "https://www.linkedin.com/in/bertrand-de-poly/" },
+  { "@context": "https://schema.org", "@type": "Person", "name": "Badr Hjiaj", "jobTitle": "Operating Partner", "worksFor": { "@type": "Organization", "name": "OPValue+" }, "url": "https://opvalueplus.com/equipe.html", "sameAs": "https://www.linkedin.com/in/badr-hjiaj/" },
+  { "@context": "https://schema.org", "@type": "Person", "name": "Frédéric Galliath", "jobTitle": "Operating Partner", "worksFor": { "@type": "Organization", "name": "OPValue+" }, "url": "https://opvalueplus.com/equipe.html", "sameAs": "https://www.linkedin.com/in/fredericgalliath-130b814a/" },
+  { "@context": "https://schema.org", "@type": "Person", "name": "Frédéric Ploix", "jobTitle": "Operating Partner", "worksFor": { "@type": "Organization", "name": "OPValue+" }, "url": "https://opvalueplus.com/equipe.html", "sameAs": "https://www.linkedin.com/in/fredericploix/" },
+  { "@context": "https://schema.org", "@type": "Person", "name": "Nicolas Bally", "jobTitle": "Operating Partner", "worksFor": { "@type": "Organization", "name": "OPValue+" }, "url": "https://opvalueplus.com/equipe.html", "sameAs": "https://www.linkedin.com/in/nicolasbally/" },
+  { "@context": "https://schema.org", "@type": "Person", "name": "Olivier Lasseigne", "jobTitle": "Operating Partner", "worksFor": { "@type": "Organization", "name": "OPValue+" }, "url": "https://opvalueplus.com/equipe.html", "sameAs": "https://www.linkedin.com/in/olivierlasseigne/" }
+]
+</script>
+
+<!-- Données structurées : fil d’Ariane -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Accueil",
+      "item": "https://opvalueplus.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "L’équipe",
+      "item": "https://opvalueplus.com/equipe.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -101,59 +136,4 @@
 <script src="js/membres/bh.js"></script>
 <script src="js/components.js"></script>
 <script>
-const C = SITE_CONTENT;
-
-// Collectif — paragraphe d'intro + 3 blocs (Notre origine / Notre diversité / Notre écosystème)
-if (C.collectif) {
-  const leadEl = document.getElementById('collectif-lead');
-  if (leadEl && C.collectif.lead) leadEl.innerHTML = C.collectif.lead;
-
-  document.getElementById('collectif-cards').innerHTML =
-    C.collectif.blocs.map((bloc, i) =>
-      `<div class="collectif-card reveal reveal-delay-${(i%4)+1}">
-         <h4>${bloc.titre}</h4>
-         <p>${bloc.texte}</p>
-       </div>`
-    ).join('');
-}
-
-// Team grid
-const teamGrid = document.getElementById('team-grid');
-const membres = COMPONENTS.getAllMembres();
-
-if (membres && membres.length > 0) {
-  membres.forEach((m, idx) => {
-    const missionCount = (m.missions || []).length;
-    const opNameForUrl = encodeURIComponent(`${m.prenom} ${m.nom}`);
-    const missionLabel = `${missionCount} mission${missionCount > 1 ? 's' : ''} réalisée${missionCount > 1 ? 's' : ''}`;
-
-    const card = document.createElement('div');
-    card.className = `member reveal reveal-delay-${(idx%4)+1}`;
-    card.id = `fiche-${m.id}`;  // ancre pour liens depuis les cartes mission (references.html)
-    card.innerHTML = `
-      <div class="member-top">
-        <div class="member-avatar">
-          <img src="" data-portrait="${m.id}" onerror="this.style.display='none'" alt="${m.prenom} ${m.nom}">
-        </div>
-        <div class="member-info">
-          <h5>${m.prenom} <span class="nom-fam">${m.nom}</span></h5>
-          <div class="member-focus">${m.expertises}</div>
-        </div>
-      </div>
-      <p><strong>Cibles :</strong> ${m.cibles}</p>
-      <p><strong>Secteurs :</strong> ${m.secteurs}</p>
-      <div class="member-actions">
-        <a href="references.html?op=${opNameForUrl}" class="member-missions-link" aria-label="Voir les ${missionLabel} de ${m.prenom} ${m.nom}">${missionLabel} →</a>
-        <a href="${m.linkedin}" class="member-linkedin" target="_blank" rel="noopener">LinkedIn →</a>
-      </div>
-    `;
-    teamGrid.appendChild(card);
-  });
-
-  COMPONENTS.injectPortraits();
-}
-
-COMPONENTS.init('equipe');
-</script>
-</body>
-</html>
+const C 
