@@ -46,6 +46,20 @@ const COMPONENTS = {
 
     document.body.prepend(nav);
 
+    // Lien d'évitement (accessibilité clavier) — pointe vers le 1er bloc de contenu
+    let cible = document.getElementById('contenu');
+    if (!cible) {
+      cible = document.querySelector('main, section');
+      if (cible) { cible.id = cible.id || 'contenu'; cible.setAttribute('tabindex', '-1'); }
+    }
+    if (cible) {
+      const skip = document.createElement('a');
+      skip.href = '#' + cible.id;
+      skip.className = 'skip-link';
+      skip.textContent = 'Aller au contenu';
+      document.body.prepend(skip);
+    }
+
     // Scroll effect
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);

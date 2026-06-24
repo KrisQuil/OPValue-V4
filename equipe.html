@@ -168,7 +168,7 @@
         <p class="collectif-desc reveal" id="collectif-lead"></p>
       </div>
       <div class="collectif-image reveal">
-        <img src="images/groupe-op.jpg" alt="Le collectif OPValue+, 7 Operating Partners">
+        <img src="images/groupe-op.webp" alt="Le collectif OPValue+, 7 Operating Partners" loading="lazy" decoding="async">
       </div>
     </div>
 
@@ -244,7 +244,7 @@ if (membres && membres.length > 0) {
     card.innerHTML = `
       <div class="member-top">
         <div class="member-avatar">
-          <img src="" data-portrait="${m.id}" onerror="this.style.display='none'" alt="${m.prenom} ${m.nom}">
+          <img src="" data-portrait="${m.id}" onerror="this.style.display='none'" alt="Portrait de ${m.prenom} ${m.nom}" loading="lazy" decoding="async">
         </div>
         <div class="member-info">
           <h5>${m.prenom} <span class="nom-fam">${m.nom}</span></h5>

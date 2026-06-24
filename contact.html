@@ -148,7 +148,7 @@ if (membres && membres.length > 0) {
   cmGrid.innerHTML = membres.map((m, i) =>
     `<div class="cm-card reveal reveal-delay-${(i%4)+1}">
        <div class="cm-avatar">
-         <img src="" data-portrait="${m.id}" onerror="this.style.display='none'" alt="${m.prenom} ${m.nom}">
+         <img src="" data-portrait="${m.id}" onerror="this.style.display='none'" alt="Portrait de ${m.prenom} ${m.nom}" loading="lazy" decoding="async">
        </div>
        <div>
          <div class="cm-name">${m.prenom} <span class="nom-fam">${m.nom}</span></div>

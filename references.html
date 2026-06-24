@@ -192,7 +192,7 @@ function renderCards(data) {
     const opName    = `${membre.prenom} ${membre.nom}`;
 
     const logoHtml = mission.client_logo
-      ? `<img src="${mission.client_logo}" alt="Logo ${client}" class="case-client-logo">`
+      ? `<img src="${mission.client_logo}" alt="Logo ${client}" class="case-client-logo" loading="lazy" decoding="async">`
       : `<div class="case-client-logo case-client-logo-placeholder">${placeholderSvg}</div>`;
 
     return `<div class="case-card">
