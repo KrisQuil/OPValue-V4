@@ -139,6 +139,16 @@ jobs:
           echo "=== Contrôle ==="
           grep -c "<lastmod>${TODAY}</lastmod>" /tmp/deploy_bundle/sitemap.xml || true
 
+      - name: Pré-rendu statique du contenu (jsdom)
+        # Exécute le JS de chaque page et fige le contenu dans le HTML
+        # (SEO + vitesse). Les <script> restent en place pour l'interactif.
+        run: |
+          echo "=== Installation de jsdom ==="
+          cd "$GITHUB_WORKSPACE"
+          npm install jsdom --no-save --no-audit --no-fund --silent
+          echo "=== Pré-rendu des pages du bundle ==="
+          node .github/prerender.js /tmp/deploy_bundle
+
       - name: Installation de lftp
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 
