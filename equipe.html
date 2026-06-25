@@ -233,6 +233,7 @@ const teamGrid = document.getElementById('team-grid');
 const membres = COMPONENTS.getAllMembres();
 
 if (membres && membres.length > 0) {
+  teamGrid.innerHTML = ''; // idempotence : évite les doublons si la grille est déjà pré-rendue
   membres.forEach((m, idx) => {
     const missionCount = (m.missions || []).length;
     const opNameForUrl = encodeURIComponent(`${m.prenom} ${m.nom}`);

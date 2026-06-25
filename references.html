@@ -257,6 +257,9 @@ function populateFilters() {
   const selSec = document.getElementById('filter-secteur');
   const selTyp = document.getElementById('filter-type');
 
+  // idempotence : repart de l'option placeholder (évite les options en double si pré-rendu)
+  selOp.length = 1; selSec.length = 1; selTyp.length = 1;
+
   ops.forEach(v      => { const o = document.createElement('option'); o.value = v; o.textContent = v; selOp.appendChild(o); });
   secteurs.forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; selSec.appendChild(o); });
   types.forEach(v    => { const o = document.createElement('option'); o.value = v; o.textContent = v; selTyp.appendChild(o); });
