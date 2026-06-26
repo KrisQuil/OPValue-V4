@@ -197,10 +197,28 @@
           </tr>
         </tbody>
       </table>
+      <div class="comp-legend">
+        <span><span class="check" aria-hidden="true">✓</span> Couvre</span>
+        <span><span class="half" aria-hidden="true">◐</span> Partiellement</span>
+        <span><span class="none" aria-hidden="true">–</span> Ne couvre pas</span>
+      </div>
       <p class="comp-note">Ces acteurs sont chacun spécialistes de leur domaine.<br>L'Operating Partner ne s'y substitue pas : il agit <em>à l'interface</em>, en orchestrant stratégie, exécution et transformation dans la durée.</p>
     </div>
   </div>
 </section>
+
+<script>
+(function(){
+  var L = { check:'Couvre', half:'Partiellement', none:'Ne couvre pas' };
+  Object.keys(L).forEach(function(c){
+    document.querySelectorAll('.comp-table td .' + c).forEach(function(e){
+      e.setAttribute('role', 'img');
+      e.setAttribute('aria-label', L[c]);
+      e.setAttribute('title', L[c]);
+    });
+  });
+})();
+</script>
 
 <!-- CTA BANNER -->
 <section class="cta-banner">
