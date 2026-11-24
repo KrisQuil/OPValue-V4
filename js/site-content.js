@@ -378,13 +378,13 @@ const SITE_CONTENT = {
     revue_presse: {
       titre: "Revue de presse et actualités",
       items: [
-        // Ordre : du plus récent au plus ancien (ou "à venir" en tête)
+        // Ordre : du plus récent au plus ancien
         {
           actif:        true,
-          source:       "La Tribune",
-          titre:        "Operating Partners Day 2026 (à venir)",
+          source:       "Operating Partners Day 2026",
+          titre:        "Table ronde : transformer l'incertitude économique en levier de performance pour les dirigeants",
           date:         "Juin 2026",
-          url:          "https://operatingpartnersday.com/",
+          url:          "https://www.linkedin.com/posts/christophe-quille_opday26-operatingpartner-opvalue-share-7478153332692443137-pmr0/",
           op_intervient:"Christophe Quille",
         },
         {
