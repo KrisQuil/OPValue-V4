@@ -114,6 +114,7 @@ const COMPONENTS = {
           ${C ? C.meta.copyright : '© 2025 OPValue+. Tous droits réservés.'}
           &nbsp;·&nbsp; <a href="mentions-legales.html" style="color:inherit;text-decoration:none;opacity:.7">Mentions légales</a>
           &nbsp;·&nbsp; <a href="politique-confidentialite.html" style="color:inherit;text-decoration:none;opacity:.7">Politique de confidentialité</a>
+          &nbsp;·&nbsp; <a href="#" data-cookie-settings style="color:inherit;text-decoration:none;opacity:.7">Gestion des cookies</a>
         </div>
       </div>
     `;

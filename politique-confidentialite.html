@@ -3,14 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Google Analytics (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5PQYC2SZ5N"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-5PQYC2SZ5N');
-</script>
+<!-- Consentement cookies + Google Analytics (chargé seulement après accord) -->
+<script src="js/consent.js" defer></script>
 
 <title>Politique de confidentialité | OPValue+</title>
 <meta name="description" content="Politique de confidentialité d'OPValue+ : données collectées, finalités du traitement, durée de conservation, cookies et vos droits RGPD.">
@@ -87,7 +81,10 @@
     <ul>
       <li><strong>Données de contact</strong> : nom, prénom, adresse email, société, sujet et message, uniquement si vous nous contactez via le formulaire ou par email directement</li>
     </ul>
-    <p>Ce site <strong>ne dépose aucun cookie</strong> et n'utilise <strong>aucun outil de mesure d'audience</strong> (pas de Google Analytics, ni équivalent). Les seules données techniques journalisées sont celles de notre hébergeur (OVH Cloud) à des fins de bon fonctionnement et de sécurité du service.</p>
+    <ul>
+      <li><strong>Données de navigation</strong> : uniquement si vous l'acceptez, des statistiques de fréquentation recueillies par Google Analytics (pages consultées, durée de visite, type d'appareil et de navigateur, provenance géographique approximative). Voir la section 6.</li>
+    </ul>
+    <p>Les autres données techniques journalisées sont celles de notre hébergeur (OVH Cloud), à des fins de bon fonctionnement et de sécurité du service.</p>
     <p>Nous ne collectons pas de données sensibles au sens de l'article 9 du RGPD.</p>
 
     <h2>3. Finalités et base légale du traitement</h2>
@@ -98,6 +95,7 @@
       <tbody>
         <tr><td>Répondre à vos demandes de contact</td><td>Intérêt légitime / consentement</td></tr>
         <tr><td>Échanger sur une mission potentielle (relation pré-contractuelle)</td><td>Mesures pré-contractuelles à votre demande</td></tr>
+        <tr><td>Mesurer la fréquentation du site pour l'améliorer</td><td>Consentement</td></tr>
       </tbody>
     </table>
 
@@ -107,6 +105,8 @@
     </p>
     <ul>
       <li>Données de contact : <strong>3 ans</strong> à compter du dernier contact</li>
+      <li>Cookies de mesure d'audience : <strong>13 mois</strong> au maximum ; statistiques conservées par Google Analytics <strong>14 mois</strong></li>
+      <li>Votre choix concernant les cookies : <strong>6 mois</strong>, après quoi il vous est de nouveau demandé</li>
     </ul>
 
     <h2>5. Destinataires des données</h2>
@@ -119,13 +119,25 @@
     <p>
       Les fichiers de polices typographiques sont chargés depuis Google Fonts (<strong>fonts.googleapis.com</strong>) ; Google peut journaliser votre adresse IP à cette occasion. Aucun cookie n'est posé par ce chargement.
     </p>
-
-    <h2>6. Cookies et traceurs</h2>
     <p>
-      <strong>Ce site ne dépose aucun cookie</strong>, ni technique ni d'analyse d'audience, et n'utilise aucun traceur. Aucun consentement n'est donc requis.
+      Si vous acceptez la mesure d'audience, les statistiques de fréquentation sont traitées par <strong>Google Ireland Limited</strong> (Gordon House, Barrow Street, Dublin 4, Irlande) pour le compte d'OPValue+, via Google Analytics. Ces données peuvent être transférées aux États-Unis vers Google LLC, entreprise adhérente au cadre de protection des données UE–États-Unis (Data Privacy Framework). Elles ne sont pas utilisées à des fins publicitaires.
     </p>
+
+    <h2 id="cookies">6. Cookies et traceurs</h2>
     <p>
-      Si un outil de mesure d'audience devait être déployé à l'avenir, la présente politique serait mise à jour et, le cas échéant, un mécanisme de consentement serait proposé conformément aux recommandations CNIL.
+      Lors de votre première visite, un bandeau vous demande si vous acceptez la mesure d'audience. Tant que vous n'avez pas accepté, <strong>aucun cookie de mesure n'est déposé</strong>. Refuser est aussi simple qu'accepter et n'a aucune conséquence sur votre navigation.
+    </p>
+    <table class="legal-table">
+      <thead>
+        <tr><th>Nom</th><th>Rôle</th><th>Durée</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>_ga, _ga_*</td><td>Google Analytics : distinguer les visiteurs et mesurer la fréquentation (déposés uniquement après votre accord)</td><td>13 mois maximum</td></tr>
+        <tr><td>opv_consent (stockage local du navigateur)</td><td>Mémoriser votre choix pour ne pas vous le redemander à chaque page</td><td>6 mois</td></tr>
+      </tbody>
+    </table>
+    <p>
+      Vous pouvez modifier votre choix à tout moment : <a href="#" data-cookie-settings>gérer mes cookies</a> (lien également présent en bas de chaque page). Si vous retirez votre accord, les cookies Google Analytics sont supprimés.
     </p>
 
     <h2>7. Vos droits</h2>
@@ -153,7 +165,7 @@
       Cette politique peut être mise à jour à tout moment. Nous vous invitons à la consulter régulièrement. La date de dernière mise à jour figure ci-dessous.
     </p>
 
-    <p class="legal-update">Dernière mise à jour : <strong>25 mai 2026</strong></p>
+    <p class="legal-update">Dernière mise à jour : <strong>24 novembre 2026</strong></p>
 
   </div>
 </section>

@@ -166,7 +166,7 @@ const SITE_CONTENT = {
   collectif: {
     title:    "Notre collectif",
     subtitle: "Un groupe de dirigeants aguerris, alignés, complémentaires",
-    lead:     "Un collectif d'anciens dirigeants, tous certifiés au métier d'operating partner, réunis par des parcours complémentaires et une même culture de l'action.",
+    lead:     "Chaque mission est portée par un Operating Partner référent. Selon les besoins du dossier, il mobilise un ou plusieurs membres du collectif (finance, industrie, tech, M&A), tous certifiés au métier d'operating partner. Le dirigeant garde un seul interlocuteur et bénéficie de l'expérience de six anciens dirigeants.",
     blocs: [
       {
         titre: "Notre origine",

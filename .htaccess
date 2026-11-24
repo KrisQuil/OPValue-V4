@@ -45,17 +45,18 @@ Options -Indexes
     #   - Scripts et styles self-hosted (+ unsafe-inline car scripts inline dans les HTML)
     #   - Images self-hosted + data: (base64 portraits)
     #   - Formulaire contact ouvre mailto: dans le client mail de l'utilisateur
+#   - Google Analytics (GA4), chargé uniquement après consentement (js/consent.js)
     #
     # NOTE : unsafe-inline sur script-src est requis car les pages embarquent
     # des blocs <script> inline. Pour supprimer unsafe-inline, extraire ces
     # blocs dans js/pages/*.js (Priorité 2 de l'audit code).
     Header always set Content-Security-Policy "\
 default-src 'self'; \
-script-src 'self' 'unsafe-inline'; \
+script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; \
 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; \
 font-src 'self' https://fonts.gstatic.com; \
-img-src 'self' data:; \
-connect-src 'self'; \
+img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; \
+connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; \
 frame-src 'none'; \
 frame-ancestors 'none'; \
 base-uri 'self'; \
