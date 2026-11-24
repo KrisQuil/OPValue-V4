@@ -22,7 +22,6 @@ const SITE_IMAGES = {
   fg:  "images/portraits/fg.webp",
   bdp: "images/portraits/bdp.webp",
   nb:  "images/portraits/nb.webp",
-  bh:  "images/portraits/bh.webp",
 };
 
 if (typeof module !== "undefined") module.exports = SITE_IMAGES;
