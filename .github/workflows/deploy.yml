@@ -149,6 +149,22 @@ jobs:
           echo "=== Pré-rendu des pages du bundle ==="
           node .github/prerender.js /tmp/deploy_bundle
 
+      - name: Rafraîchissement du cache navigateur (CSS et JS versionnés)
+        # Le serveur demande aux navigateurs de garder CSS et JS une semaine.
+        # On ajoute ?v=<commit> aux liens pour que chaque déploiement force
+        # le rechargement (sinon : nouvelles pages + ancienne feuille de style).
+        # Étape placée APRÈS le pré-rendu, qui a besoin des chemins sans paramètre.
+        run: |
+          V="${GITHUB_SHA::8}"
+          echo "Version des ressources : $V"
+          sed -i -E \
+            -e "s#(href=\"css/[^\"?]+\.css)\"#\1?v=${V}\"#g" \
+            -e "s#(src=\"js/[^\"?]+\.js)\"#\1?v=${V}\"#g" \
+            /tmp/deploy_bundle/*.html
+          echo "=== Contrôle ==="
+          grep -o 'css/style.css?v=[^"]*' /tmp/deploy_bundle/index.html | head -1
+          grep -c 'js/[^"]*?v=' /tmp/deploy_bundle/index.html || true
+
       - name: Installation de lftp
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 
