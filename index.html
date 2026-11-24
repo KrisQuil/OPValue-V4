@@ -82,12 +82,16 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <h1>Décider vite. Exécuter juste.<br>Tenir le cap <em>avec vous</em>.</h1>
-    <p class="hero-sub">Operating Partners.<br>Des pairs et copilotes à vos côtés dans les phases de croissance, transformation, rebond. Vision 360°, engagés financièrement sur vos résultats, dans la durée.</p>
+    <p class="hero-title">Décider vite. Exécuter juste.<br>Tenir le cap <em>avec vous</em>.</p>
+    <div class="hero-sub">
+      <h1>Operating Partner</h1>
+      <h2>Un pair, copilote à vos côtés dans les phases de croissance, transformation, rebond.</h2>
+      <p>Vision 360°, engagé financièrement sur vos résultats, dans la durée.</p>
+    </div>
     <div class="hero-stats">
-      <div class="hero-stat"><h3>+100M€</h3><p>de valeur générée</p></div>
-      <div class="hero-stat"><h3 data-missions-count>—</h3><p>missions réalisées</p></div>
-      <div class="hero-stat"><h3>6</h3><p>Operating Partners</p></div>
+      <div class="hero-stat"><div class="hero-stat-value">+100M€</div><p>de valeur générée</p></div>
+      <div class="hero-stat"><div class="hero-stat-value" data-missions-count>—</div><p>missions réalisées</p></div>
+      <div class="hero-stat"><div class="hero-stat-value">6</div><p>Operating Partners</p></div>
     </div>
   </div>
 </section>
@@ -106,7 +110,7 @@
   <div class="enjeux-inner-v2">
     <div class="enjeux-head reveal">
       <div class="section-label">Vos enjeux actuels</div>
-      <h2 class="section-title">Complexité. Incertitude. <em>Isolement.</em></h2>
+      <h3 class="section-title">Complexité. Incertitude. <em>Isolement.</em></h3>
     </div>
     <div class="enjeux-two" id="enjeux-two"></div>
     <div class="enjeux-bridge reveal">
@@ -162,7 +166,7 @@ if (C.enjeux) {
     `<div class="enjeu-col reveal reveal-delay-${i+1}">
        <div class="enjeu-col-head">
          <div class="enjeu-icon">${b.icon}</div>
-         <h5>${b.titre}</h5>
+         <div class="t5">${b.titre}</div>
        </div>
        <ul class="enjeu-questions">
          ${b.data.items.map(q => `<li>${q}</li>`).join('')}

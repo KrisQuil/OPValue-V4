@@ -118,14 +118,14 @@
 <!-- PAGE HEADER -->
 <section class="page-header">
   <div class="page-header-inner">
-    <h1>Stratégie. Exécution. Engagement. <em>À vos côtés.</em></h1>
+    <p class="page-header-title">Stratégie. Exécution. Engagement. <em>À vos côtés.</em></p>
   </div>
 </section>
 
 <!-- PROMESSE -->
 <section class="promise" id="promesse">
   <div class="promise-inner">
-    <h2 class="section-title reveal">Décider vite. Exécuter juste. Tenir le cap <em>avec vous.</em></h2>
+    <p class="section-title reveal">Décider vite. Exécuter juste. Tenir le cap <em>avec vous.</em></p>
     <div class="promise-grid" id="prom-grid"></div>
   </div>
 </section>
@@ -133,7 +133,7 @@
 <!-- SOLUTION PHASES -->
 <section class="solution" id="solution">
   <div class="solution-inner">
-    <h2 class="section-title reveal">Notre démarche en <em>4 étapes</em></h2>
+    <h1 class="section-title reveal">Notre démarche en <em>4 étapes</em></h1>
     <div class="solution-cards" id="solution-cards"></div>
   </div>
 </section>
@@ -184,7 +184,7 @@ if (C.promesse) {
     `<div class="promise-card reveal reveal-delay-${(i%4)+1}">
        <div class="promise-head">
          <div class="promise-icon">${PROMISE_ICONS[p.icon] || p.icon}</div>
-         <h4>${p.titre}</h4>
+         <div class="promise-card-title">${p.titre}</div>
        </div>
        <p>${p.texte}</p>
      </div>`).join('');
@@ -200,7 +200,7 @@ if (C.solution) {
       : (phase.duree ? `<div class="sol-duration">⏱ ${phase.duree}</div>` : '');
     return `<div class="sol-card reveal reveal-delay-${i+1}">
       <div class="sol-tag"><span class="sol-step-n">${i+1}</span><sup>${ordSuffix[i]}</sup> étape</div>
-      <h4>${phase.code}</h4>
+      <div class="sol-card-title">${phase.code}</div>
       <p class="sol-desc">${phase.titre}</p>
       <ul>${items}</ul>
       ${footer}
@@ -224,8 +224,8 @@ if (C.situations) {
   };
   document.getElementById('situations-grid').innerHTML = C.situations.items.map((item, i) =>
     `<div class="sit-item reveal reveal-delay-${(i%4)+1}">
-       <h5>${item}</h5>
-       <p>${descriptions[item] || ''}</p>
+       <div class="sit-item-title">${item}</div>
+       <h3 class="sit-item-desc">${descriptions[item] || ''}</h3>
      </div>`
   ).join('');
 }

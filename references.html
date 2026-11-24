@@ -66,14 +66,14 @@
 <!-- PAGE HEADER -->
 <section class="page-header">
   <div class="page-header-inner">
-    <h1>Des résultats pour des situations <em>comme la vôtre</em></h1>
+    <p class="page-header-title">Des résultats pour des situations <em>comme la vôtre</em></p>
   </div>
 </section>
 
 <!-- RESULTS -->
 <section class="results" id="results">
   <div class="results-inner">
-    <h2 class="section-title reveal">L'impact OPValue+ en <em>chiffres</em></h2>
+    <h1 class="section-title reveal">L'impact OPValue+ en <em>chiffres</em></h1>
 
     <div class="results-headline reveal reveal-delay-1">
       <div class="big-stat">+100M€</div>
@@ -135,7 +135,7 @@ if (C.references && C.references.categories) {
     ).join('');
     return `<div class="result-card reveal reveal-delay-${(i%4)+1}">
       <div class="result-cat">${cat.titre}</div>
-      <h5>${cat.items[0]}</h5>
+      <div class="t5">${cat.items[0]}</div>
       <div class="result-metrics">${metrics}</div>
     </div>`;
   }).join('');

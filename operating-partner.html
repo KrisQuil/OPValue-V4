@@ -66,14 +66,15 @@
 <!-- PAGE HEADER -->
 <section class="page-header">
   <div class="page-header-inner">
-    <h1>À vos côtés, un co-pilote qui a déjà <em>tenu la barre</em></h1>
+    <h1 class="section-label">Le monde de l'OP</h1>
+    <h2 class="page-header-title">À vos côtés, un co-pilote qui a déjà <em>tenu la barre</em></h2>
   </div>
 </section>
 
 <!-- OP DEFINITION + PRESS -->
 <section class="op-def">
   <div class="op-def-inner">
-    <h2 class="section-title reveal op-def-title">L'état de l'<em>art</em></h2>
+    <p class="section-title reveal op-def-title">L'état de l'<em>art</em></p>
     <div class="op-def-main">
       <div class="op-def-text reveal">
         <p>
@@ -98,15 +99,15 @@
 
       <div class="op-def-highlights">
         <div class="op-highlight reveal reveal-delay-1">
-          <h5>ROI ×7</h5>
+          <div class="t5">ROI ×7</div>
           <p>Sur les honoraires d'Operating Partner engagés</p>
         </div>
         <div class="op-highlight reveal reveal-delay-2">
-          <h5>+2,1 M€</h5>
+          <div class="t5">+2,1 M€</div>
           <p>De valeur créée par entreprise accompagnée</p>
         </div>
         <div class="op-highlight reveal reveal-delay-3">
-          <h5>+4,2 pts</h5>
+          <div class="t5">+4,2 pts</div>
           <p>D'EBITDA gagnés en moyenne par mission</p>
         </div>
       </div>
@@ -265,7 +266,7 @@ if (typeof SITE_CONTENT !== 'undefined' && SITE_CONTENT.monde_op) {
   const sidebar = document.getElementById('sidebar-monde-op');
   if (sidebar) {
     sidebar.innerHTML = `
-      <h4 class="sidebar-title">${rp.titre}</h4>
+      <div class="sidebar-title">${rp.titre}</div>
       <div class="press-list">${itemsHtml || '<p class="press-empty">Bientôt disponible.</p>'}</div>
     `;
   }
